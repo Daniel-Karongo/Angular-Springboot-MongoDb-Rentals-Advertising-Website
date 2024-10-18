@@ -7,4 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PropertiesRepository extends MongoRepository<Property, String> {
+    List<Property> findByPropertyOwnerId(String id);
 }

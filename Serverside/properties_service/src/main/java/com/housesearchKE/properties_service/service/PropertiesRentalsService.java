@@ -5,6 +5,7 @@ import com.housesearchKE.properties_service.feign.PropertiesOwnersInterface;
 import com.housesearchKE.properties_service.model.Property;
 import com.housesearchKE.properties_service.model.PropertyOwner;
 import com.housesearchKE.properties_service.repository.PropertiesRepository;
+import com.housesearchKE.properties_service.repository.SearchRepository;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class PropertiesRentalsService {
 
     @Autowired
     private PropertiesOwnersInterface propertiesOwnersInterface;
+
+    @Autowired
+    private SearchRepository searchRepository;
 
     public ResponseEntity<List<PropertiesDTO>> getAllRentals() {
         List<PropertiesDTO> properties = new ArrayList<>();
@@ -42,6 +46,7 @@ public class PropertiesRentalsService {
             propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setLocation(property.getLocation());
             propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setRating(property.getRating());
 
             properties.add(propertyDTO);
         }
@@ -70,6 +75,7 @@ public class PropertiesRentalsService {
             propertyDTO.setPhotographs(prop.get().getPhotographs());
             propertyDTO.setLocation(prop.get().getLocation());
             propertyDTO.setAmmenities(prop.get().getAmmenities());
+            propertyDTO.setRating(prop.get().getRating());
 
             return new ResponseEntity<>(propertyDTO, HttpStatus.OK);
         } else {
@@ -92,6 +98,7 @@ public class PropertiesRentalsService {
         property.setPhotographs(propertyDTO.getPhotographs());
         property.setLocation(propertyDTO.getLocation());
         property.setAmmenities(propertyDTO.getAmmenities());
+        property.setRating(propertyDTO.getRating());
 
         return new ResponseEntity<>(propertiesRepository.save(property), HttpStatus.CREATED);
     }
@@ -114,10 +121,80 @@ public class PropertiesRentalsService {
             property.setPhotographs(propertyDTO.getPhotographs());
             property.setLocation(propertyDTO.getLocation());
             property.setAmmenities(propertyDTO.getAmmenities());
+            property.setRating(propertyDTO.getRating());
 
             properties.add(property);
         }
 
         return new ResponseEntity<>(propertiesRepository.saveAll(properties), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<List<PropertiesDTO>> searchRentals(String text) {
+        List<PropertiesDTO> propertiesDTOS = new ArrayList<>();
+
+        List<Property> properties = searchRepository.findByText(text);
+
+        for(Property property: properties) {
+            PropertiesDTO propertyDTO = new PropertiesDTO();
+
+            PropertyOwner owner = propertiesOwnersInterface.getPropertyOwner(property.getPropertyOwnerId()).getBody().get();
+
+            propertyDTO.setRentalId(property.getRentalId());
+            propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setTerm(property.getTerm());
+            propertyDTO.setAmount(property.getAmount());
+            propertyDTO.setTenantPreferences(property.getTenantPreferences());
+            propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
+            propertyDTO.setType(property.getType());
+            propertyDTO.setPhotographs(property.getPhotographs());
+            propertyDTO.setLocation(property.getLocation());
+            propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setRating(property.getRating());
+
+            propertiesDTOS.add(propertyDTO);
+        }
+
+        return new ResponseEntity<>(propertiesDTOS, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<String>> searchRentalsForOwner(String id) {
+        List<String> rentalIds = new ArrayList<>();
+
+        List<Property> properties = propertiesRepository.findByPropertyOwnerId(id);
+        for(Property property: properties) {
+            rentalIds.add(property.getRentalId());
+        }
+
+        return new ResponseEntity<>(rentalIds, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<PropertiesDTO>> returnRentalsForOwner(List<String> rentalIds) {
+        List<PropertiesDTO> rentals = new ArrayList<>();
+
+        List<Property> properties = new ArrayList<>();
+        for(String rentalId: rentalIds) {
+            properties.add(propertiesRepository.findById(rentalId).get());
+        }
+        for(Property property: properties) {
+            PropertiesDTO propertyDTO = new PropertiesDTO();
+
+            PropertyOwner owner = propertiesOwnersInterface.getPropertyOwner(property.getPropertyOwnerId()).getBody().get();
+
+            propertyDTO.setRentalId(property.getRentalId());
+            propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setTerm(property.getTerm());
+            propertyDTO.setAmount(property.getAmount());
+            propertyDTO.setTenantPreferences(property.getTenantPreferences());
+            propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
+            propertyDTO.setType(property.getType());
+            propertyDTO.setPhotographs(property.getPhotographs());
+            propertyDTO.setLocation(property.getLocation());
+            propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setRating(property.getRating());
+
+            rentals.add(propertyDTO);
+        }
+
+        return new ResponseEntity<>(rentals, HttpStatus.OK);
     }
 }

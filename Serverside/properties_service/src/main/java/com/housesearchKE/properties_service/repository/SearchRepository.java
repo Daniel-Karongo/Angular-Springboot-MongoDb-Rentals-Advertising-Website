@@ -1,6 +1,6 @@
-package com.housesearchKE.mongoDbJobListingsDemo.repository;
+package com.housesearchKE.properties_service.repository;
 
-import com.housesearchKE.mongoDbJobListingsDemo.model.Post;
+import com.housesearchKE.properties_service.model.Property;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SearchRepository {
-    List<Post> findByText(String text);
+    List<Property> findByText(String text);
 }

@@ -1,0 +1,97 @@
+[{
+  "propertyOwner": {
+    "id": "6711176984da374d8b132411",
+    "firstName": "Daniel",
+    "lastName": "Karongo Kungu",
+    "phoneNumber": "0782645342",
+    "emailAddress": "karongodaniel022@gmail.com",
+    "password": "1234"
+  },
+  "term": "Year",
+  "amount": 50000,
+  "tenantPreferences": [
+    "Christians"
+  ],
+  "numberOfOccupants": 0,
+  "type": "Hostel",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4.0
+},
+{
+  "propertyOwner": {
+    "id": "6711176984da374d8b132411",
+    "firstName": "Daniel",
+    "lastName": "Karongo Kungu",
+    "phoneNumber": "0782645342",
+    "emailAddress": "karongodaniel022@gmail.com",
+    "password": "1234"
+  },
+  "term": "Monthly",
+  "amount": 6000,
+  "tenantPreferences": [
+    "Students",
+    "Male",
+    "Christians"
+  ],
+  "numberOfOccupants": 2,
+  "type": "Bedsitter",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 3.5
+},
+{
+  "propertyOwner": {
+    "id": "6711176984da374d8b132411",
+    "firstName": "Daniel",
+    "lastName": "Karongo Kungu",
+    "phoneNumber": "0782645342",
+    "emailAddress": "karongodaniel022@gmail.com",
+    "password": "1234"
+  },
+  "term": "Monthly",
+  "amount": 12000,
+  "tenantPreferences": [
+    "Students",
+    "Male",
+    "Christians"
+  ],
+  "numberOfOccupants": 2,
+  "type": "House",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4.5
+}]

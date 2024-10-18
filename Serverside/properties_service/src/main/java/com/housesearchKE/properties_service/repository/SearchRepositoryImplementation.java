@@ -1,11 +1,12 @@
-package com.housesearchKE.mongoDbJobListingsDemo.repository;
-
-import com.housesearchKE.mongoDbJobListingsDemo.model.Post;
+package com.housesearchKE.properties_service.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Properties;
 
+import com.housesearchKE.properties_service.dto.PropertiesDTO;
+import com.housesearchKE.properties_service.model.Property;
 import com.mongodb.client.MongoClient;
 import org.bson.Document;
 import com.mongodb.client.MongoCollection;
@@ -25,30 +26,38 @@ public class SearchRepositoryImplementation implements SearchRepository {
     private MongoConverter converter;
 
     @Override
-    public List<Post> findByText(String text) {
-        List<Post> posts = new ArrayList<>();
-
-        MongoDatabase database = client.getDatabase("jobpostings");
-        MongoCollection<Document> collection = database.getCollection("jobs");
+    public List<Property> findByText(String text) {
+        List<Property> properties = new ArrayList<>();
+        MongoDatabase database = client.getDatabase("housesearchke");
+        MongoCollection<Document> collection = database.getCollection("properties");
 
         // Create a regex pattern for case-insensitive search
         String regexPattern = String.format(".*%s.*", text);
+        List<Document> orConditions = new ArrayList<>();
+
+        orConditions.add(new Document("type", new Document("$regex", regexPattern).append("$options", "i")));
+        orConditions.add(new Document("location", new Document("$regex", regexPattern).append("$options", "i")));
+        orConditions.add(new Document("ammenities", new Document("$regex", regexPattern).append("$options", "i")));
+
+        // Check if the text can be parsed into an integer to search in the 'amount' field
+        try {
+            int amount = Integer.parseInt(text);
+            orConditions.add(new Document("amount", amount));
+        } catch (NumberFormatException e) {
+            // The text is not a valid number, so we skip adding 'amount' to the search criteria.
+        }
 
         AggregateIterable<Document> result = collection.aggregate(Arrays.asList(
-                new Document("$match",
-                        new Document("$or", Arrays.asList(
-                                new Document("desc", new Document("$regex", regexPattern).append("$options", "i")),
-                                new Document("profile", new Document("$regex", regexPattern).append("$options", "i")),
-                                new Document("techs", new Document("$regex", regexPattern).append("$options", "i"))
-                        ))),
-                new Document("$sort", new Document("exp", -1L))     // To sort by experience in descending order
-//                new Document("$skip", 2L),        // To skip the first two results
-//                new Document("$limit", 3L)        // To Limit the results to only 3 documents
+                new Document("$match", new Document("$or", orConditions)),
+                new Document("$sort", new Document("rating", -1L))  // To sort by rating in descending order
         ));
 
-        result.forEach(doc -> posts.add(converter.read(Post.class, doc)));
+        result.forEach(doc -> properties.add(converter.read(Property.class, doc)));
 
-        return posts;
+        return properties;
     }
+
+
+
 
 }

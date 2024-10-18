@@ -1,5 +1,6 @@
 package com.housesearchKE.property_owners_service.controller;
 
+import com.housesearchKE.property_owners_service.dto.PropertiesDTO;
 import com.housesearchKE.property_owners_service.model.PropertyOwner;
 import com.housesearchKE.property_owners_service.service.OwnersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class Owners_Controller {
     @PostMapping ("owners")
     public ResponseEntity<List<PropertyOwner>> savePropertyOwners(@RequestBody List<PropertyOwner> owners) {
         return ownersService.savePropertyOwners(owners);
+    }
+
+    @GetMapping ("properties/{ownerId}")
+    public ResponseEntity<List<PropertiesDTO>> savePropertyOwners(@PathVariable("ownerId") String ownerId) {
+        return ownersService.getAllOwnersProperties(ownerId);
     }
 }

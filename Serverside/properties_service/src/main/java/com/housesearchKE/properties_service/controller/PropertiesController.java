@@ -35,4 +35,19 @@ public class PropertiesController {
     public ResponseEntity<List<Property>> saveRentals(@RequestBody List<PropertiesDTO> propertiesDTOs) {
         return propertiesRentalsService.saveRentals(propertiesDTOs);
     }
+
+    @GetMapping("properties/{text}")
+    public ResponseEntity<List<PropertiesDTO>> searchRentals(@PathVariable("text") String text) {
+        return propertiesRentalsService.searchRentals(text);
+    }
+
+    @GetMapping("owner/{id}")
+    public ResponseEntity<List<String>> searchRentalsForOwner(@PathVariable("id") String id) {
+        return propertiesRentalsService.searchRentalsForOwner(id);
+    }
+
+    @PostMapping("owner")
+    public ResponseEntity<List<PropertiesDTO>> returnRentalsForOwner(@RequestBody List<String> rentalIds) {
+        return propertiesRentalsService.returnRentalsForOwner(rentalIds);
+    }
 }

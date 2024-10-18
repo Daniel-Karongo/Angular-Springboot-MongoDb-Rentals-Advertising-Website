@@ -21,4 +21,5 @@ public class PropertiesDTO {
     private String[] photographs;
     private String location;
     private String[] ammenities;
+    private double rating;
 }
