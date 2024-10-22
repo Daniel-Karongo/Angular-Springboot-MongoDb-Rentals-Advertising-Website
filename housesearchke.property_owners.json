@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "6711176984da374d8b132411"
+  },
+  "firstName": "Daniel",
+  "lastName": "Karongo Kungu",
+  "phoneNumber": "0782645342",
+  "emailAddress": "karongodaniel022@gmail.com",
+  "password": "$2a$12$2GqPyJFMIVNHSEoQie/BcOVP1.K8sF0.TNXyhIclxBU1ODEDxh2wG",
+  "_class": "com.housesearchKE.property_owners_service.model.PropertyOwner"
+},
+{
+  "_id": {
+    "$oid": "6711189b84da374d8b132412"
+  },
+  "firstName": "Isaac",
+  "lastName": "Kungu",
+  "phoneNumber": "0723715225",
+  "emailAddress": "i.kungu.ik@gmail.com",
+  "password": "$2a$12$2GqPyJFMIVNHSEoQie/BcOVP1.K8sF0.TNXyhIclxBU1ODEDxh2wG",
+  "_class": "com.housesearchKE.property_owners_service.model.PropertyOwner"
+},
+{
+  "_id": {
+    "$oid": "6711189b84da374d8b132413"
+  },
+  "firstName": "Violet",
+  "lastName": "Wanjiru",
+  "phoneNumber": "0721961874",
+  "emailAddress": "kavi8220488@gmail.com",
+  "password": "$2a$12$2GqPyJFMIVNHSEoQie/BcOVP1.K8sF0.TNXyhIclxBU1ODEDxh2wG",
+  "_class": "com.housesearchKE.property_owners_service.model.PropertyOwner"
+}]

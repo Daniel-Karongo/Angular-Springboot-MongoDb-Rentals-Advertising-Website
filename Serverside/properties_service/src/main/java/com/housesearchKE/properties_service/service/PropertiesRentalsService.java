@@ -83,48 +83,44 @@ public class PropertiesRentalsService {
         }
     }
 
-    public ResponseEntity<Property> saveRental(PropertiesDTO propertyDTO) {
-        Property property = new Property();
-
-        if(propertyDTO.getRentalId()!= null)
-            property.setRentalId(propertyDTO.getRentalId());
-        property.setPropertyOwnerId(propertyDTO.getPropertyOwner().getId());
-        property.setTerm(propertyDTO.getTerm());
-        property.setAmount(propertyDTO.getAmount());
-        property.setTenantPreferences(propertyDTO.getTenantPreferences());
-        if(propertyDTO.getNumberOfOccupants()!= null)
-            property.setNumberOfOccupants(propertyDTO.getNumberOfOccupants());
-        property.setType(propertyDTO.getType());
-        property.setPhotographs(propertyDTO.getPhotographs());
-        property.setLocation(propertyDTO.getLocation());
-        property.setAmmenities(propertyDTO.getAmmenities());
-        property.setRating(propertyDTO.getRating());
+    public ResponseEntity<Property> saveRental(Property property) {
+//        if(property.getRentalId()!= null)
+//            property.setRentalId(propertyDTO.getRentalId());
+//        property.setPropertyOwnerId(propertyDTO.getPropertyOwner().getId());
+//        property.setTerm(propertyDTO.getTerm());
+//        property.setAmount(propertyDTO.getAmount());
+//        property.setTenantPreferences(propertyDTO.getTenantPreferences());
+//        if(propertyDTO.getNumberOfOccupants()!= null)
+//            property.setNumberOfOccupants(propertyDTO.getNumberOfOccupants());
+//        property.setType(propertyDTO.getType());
+//        property.setPhotographs(propertyDTO.getPhotographs());
+//        property.setLocation(propertyDTO.getLocation());
+//        property.setAmmenities(propertyDTO.getAmmenities());
+//        property.setRating(propertyDTO.getRating());
 
         return new ResponseEntity<>(propertiesRepository.save(property), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<List<Property>> saveRentals(List<PropertiesDTO> propertiesDTOs) {
-        List<Property> properties = new ArrayList<>();
-
-        for(PropertiesDTO propertyDTO: propertiesDTOs) {
-            Property property = new Property();
-
-            if(propertyDTO.getRentalId()!= null)
-                property.setRentalId(propertyDTO.getRentalId());
-            property.setPropertyOwnerId(propertyDTO.getPropertyOwner().getId());
-            property.setTerm(propertyDTO.getTerm());
-            property.setAmount(propertyDTO.getAmount());
-            property.setTenantPreferences(propertyDTO.getTenantPreferences());
-            if(propertyDTO.getNumberOfOccupants()!= null)
-                property.setNumberOfOccupants(propertyDTO.getNumberOfOccupants());
-            property.setType(propertyDTO.getType());
-            property.setPhotographs(propertyDTO.getPhotographs());
-            property.setLocation(propertyDTO.getLocation());
-            property.setAmmenities(propertyDTO.getAmmenities());
-            property.setRating(propertyDTO.getRating());
-
-            properties.add(property);
-        }
+    public ResponseEntity<List<Property>> saveRentals(List<Property> properties) {
+//        for(PropertiesDTO propertyDTO: propertiesDTOs) {
+//            Property property = new Property();
+//
+//            if(propertyDTO.getRentalId()!= null)
+//                property.setRentalId(propertyDTO.getRentalId());
+//            property.setPropertyOwnerId(propertyDTO.getPropertyOwner().getId());
+//            property.setTerm(propertyDTO.getTerm());
+//            property.setAmount(propertyDTO.getAmount());
+//            property.setTenantPreferences(propertyDTO.getTenantPreferences());
+//            if(propertyDTO.getNumberOfOccupants()!= null)
+//                property.setNumberOfOccupants(propertyDTO.getNumberOfOccupants());
+//            property.setType(propertyDTO.getType());
+//            property.setPhotographs(propertyDTO.getPhotographs());
+//            property.setLocation(propertyDTO.getLocation());
+//            property.setAmmenities(propertyDTO.getAmmenities());
+//            property.setRating(propertyDTO.getRating());
+//
+//            properties.add(property);
+//        }
 
         return new ResponseEntity<>(propertiesRepository.saveAll(properties), HttpStatus.CREATED);
     }

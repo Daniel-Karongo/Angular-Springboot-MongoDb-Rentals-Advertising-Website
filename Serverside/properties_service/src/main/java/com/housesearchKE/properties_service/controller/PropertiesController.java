@@ -27,13 +27,13 @@ public class PropertiesController {
     }
 
     @PostMapping("property")
-    public ResponseEntity<Property> saveRental(@RequestBody PropertiesDTO propertyDTO) {
-        return propertiesRentalsService.saveRental(propertyDTO);
+    public ResponseEntity<Property> saveRental(@RequestBody Property property) {
+        return propertiesRentalsService.saveRental(property);
     }
 
     @PostMapping("properties")
-    public ResponseEntity<List<Property>> saveRentals(@RequestBody List<PropertiesDTO> propertiesDTOs) {
-        return propertiesRentalsService.saveRentals(propertiesDTOs);
+    public ResponseEntity<List<Property>> saveRentals(@RequestBody List<Property> properties) {
+        return propertiesRentalsService.saveRentals(properties);
     }
 
     @GetMapping("properties/{text}")

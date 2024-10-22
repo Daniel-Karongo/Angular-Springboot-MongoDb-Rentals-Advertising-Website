@@ -1,12 +1,8 @@
 [{
-  "propertyOwner": {
-    "id": "6711176984da374d8b132411",
-    "firstName": "Daniel",
-    "lastName": "Karongo Kungu",
-    "phoneNumber": "0782645342",
-    "emailAddress": "karongodaniel022@gmail.com",
-    "password": "1234"
+  "_id": {
+    "$oid": "67120d69a3125a6fcbcf3950"
   },
+  "propertyOwnerId": "6711176984da374d8b132411",
   "term": "Year",
   "amount": 50000,
   "tenantPreferences": [
@@ -23,21 +19,19 @@
   "location": "Thika",
   "ammenities": [
     "Wi-fi",
+    "Security",
     "Water",
     "Ceiling",
     "Cctv"
   ],
-  "rating": 4.0
+  "rating": 4,
+  "_class": "com.housesearchKE.properties_service.model.Property"
 },
 {
-  "propertyOwner": {
-    "id": "6711176984da374d8b132411",
-    "firstName": "Daniel",
-    "lastName": "Karongo Kungu",
-    "phoneNumber": "0782645342",
-    "emailAddress": "karongodaniel022@gmail.com",
-    "password": "1234"
+  "_id": {
+    "$oid": "67120d69a3125a6fcbcf3951"
   },
+  "propertyOwnerId": "6711176984da374d8b132411",
   "term": "Monthly",
   "amount": 6000,
   "tenantPreferences": [
@@ -60,17 +54,14 @@
     "Ceiling",
     "Cctv"
   ],
-  "rating": 3.5
+  "rating": 3.5,
+  "_class": "com.housesearchKE.properties_service.model.Property"
 },
 {
-  "propertyOwner": {
-    "id": "6711176984da374d8b132411",
-    "firstName": "Daniel",
-    "lastName": "Karongo Kungu",
-    "phoneNumber": "0782645342",
-    "emailAddress": "karongodaniel022@gmail.com",
-    "password": "1234"
+  "_id": {
+    "$oid": "67120d69a3125a6fcbcf3952"
   },
+  "propertyOwnerId": "6711176984da374d8b132411",
   "term": "Monthly",
   "amount": 12000,
   "tenantPreferences": [
@@ -93,5 +84,6 @@
     "Ceiling",
     "Cctv"
   ],
-  "rating": 4.5
+  "rating": 4.5,
+  "_class": "com.housesearchKE.properties_service.model.Property"
 }]
