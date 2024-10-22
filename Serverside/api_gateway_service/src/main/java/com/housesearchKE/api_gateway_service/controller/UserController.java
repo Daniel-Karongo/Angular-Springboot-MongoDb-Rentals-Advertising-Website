@@ -1,7 +1,7 @@
-package com.housesearchKE.SpringbootSecurityExample.controller;
+package com.housesearchKE.api_gateway_service.controller;
 
-import com.housesearchKE.SpringbootSecurityExample.model.User;
-import com.housesearchKE.SpringbootSecurityExample.service.UserService;
+import com.housesearchKE.api_gateway_service.model.PropertyOwner;
+import com.housesearchKE.api_gateway_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,22 +17,22 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/register")
-    public User registerUser(@RequestBody User user) {
+    public PropertyOwner registerUser(@RequestBody PropertyOwner user) {
         return userService.registerUser(user);
     }
 
     @GetMapping("/users")
-    public List<User> getUsers() {
+    public List<PropertyOwner> getUsers() {
         return userService.getUsers();
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
+    public String login(@RequestBody PropertyOwner user) {
         return userService.verifyUser(user);
     }
 
     @PostMapping("/api/login")
-    public String loginViaPostman(@RequestBody User user) {
+    public String loginViaPostman(@RequestBody PropertyOwner user) {
         return userService.verifyUser(user);
     }
 

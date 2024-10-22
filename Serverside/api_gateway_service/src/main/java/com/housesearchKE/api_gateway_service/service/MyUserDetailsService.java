@@ -1,8 +1,8 @@
-package com.housesearchKE.SpringbootSecurityExample.service;
+package com.housesearchKE.api_gateway_service.service;
 
-import com.housesearchKE.SpringbootSecurityExample.model.User;
-import com.housesearchKE.SpringbootSecurityExample.model.UserPrincipal;
-import com.housesearchKE.SpringbootSecurityExample.repo.UserRepository;
+import com.housesearchKE.api_gateway_service.model.PropertyOwner;
+import com.housesearchKE.api_gateway_service.model.UserPrincipal;
+import com.housesearchKE.api_gateway_service.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +15,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        PropertyOwner user = userRepository.findByEmailAddress(username);
         System.out.println(user);
         if(user == null) {
             System.out.println("User is null");

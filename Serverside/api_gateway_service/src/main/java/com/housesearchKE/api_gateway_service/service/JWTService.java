@@ -1,9 +1,10 @@
-package com.housesearchKE.SpringbootSecurityExample.service;
+package com.housesearchKE.api_gateway_service.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +19,21 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    private String secretKey="";
+    @Value("${jwt.secret}")
+    private String secretKey;
 
-    public JWTService() {
-        try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey sKey = keyGenerator.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(sKey.getEncoded());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    @Value("${jwt.expirationMs}")
+    private Long expirationTimeMs;
+
+//    public JWTService() {
+//        try {
+//            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
+//            SecretKey sKey = keyGenerator.generateKey();
+//            secretKey = Base64.getEncoder().encodeToString(sKey.getEncoded());
+//        } catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
 
@@ -36,7 +41,7 @@ public class JWTService {
                 .claims(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 1000 * 10))    // The token will expire after 10 minutes
+                .expiration(new Date(System.currentTimeMillis() + expirationTimeMs))    // The token will expire after 12 hours
                 .signWith(getKey())
                 .compact();
     }

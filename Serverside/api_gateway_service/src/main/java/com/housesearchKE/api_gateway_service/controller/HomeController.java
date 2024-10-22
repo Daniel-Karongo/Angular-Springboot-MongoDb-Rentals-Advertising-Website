@@ -1,4 +1,4 @@
-package com.housesearchKE.SpringbootSecurityExample.controller;
+package com.housesearchKE.api_gateway_service.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -11,4 +11,9 @@ public class HomeController {
     public String home(HttpServletRequest request) {
         return "Hello world " + request.getSession().getId();
     }
+
+//    @GetMapping("/csrf_token")
+//    public CsrfToken csrfToken(HttpServletRequest request) {
+//        return (CsrfToken) request.getAttribute("_csrf");
+//    }
 }

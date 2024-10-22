@@ -1,8 +1,9 @@
-package com.housesearchKE.SpringbootSecurityExample.config;
+package com.housesearchKE.api_gateway_service.config;
 
-import com.housesearchKE.SpringbootSecurityExample.filter.JWTFilter;
-import com.housesearchKE.SpringbootSecurityExample.service.MyUserDetailsService;
+import com.housesearchKE.api_gateway_service.filter.JWTFilter;
+import com.housesearchKE.api_gateway_service.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.proxy.NoOp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,8 +12,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -53,7 +54,8 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(bCryptPasswordEncoder());     // Not advised
+        provider.setPasswordEncoder(bCryptPasswordEncoder());
+//        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
 
         return provider;
     }

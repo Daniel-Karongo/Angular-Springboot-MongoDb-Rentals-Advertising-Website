@@ -1,4 +1,4 @@
-package com.housesearchKE.SpringbootSecurityExample.model;
+package com.housesearchKE.api_gateway_service.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,8 +9,8 @@ import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user;
-    public UserPrincipal(User user) {
+    private PropertyOwner user;
+    public UserPrincipal(PropertyOwner user) {
         this.user = user;
     }
 
@@ -27,7 +27,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmailAddress();
     }
 
     @Override
