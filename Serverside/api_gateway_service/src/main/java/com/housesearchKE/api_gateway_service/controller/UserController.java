@@ -2,7 +2,9 @@ package com.housesearchKE.api_gateway_service.controller;
 
 import com.housesearchKE.api_gateway_service.model.PropertyOwner;
 import com.housesearchKE.api_gateway_service.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody PropertyOwner user) {
-        return userService.verifyUser(user);
+    public ResponseEntity<String> login(@RequestBody PropertyOwner user, HttpServletResponse response) {
+        return userService.verifyUser(user, response);
     }
 
     @PostMapping("/api/login")
-    public String loginViaPostman(@RequestBody PropertyOwner user) {
-        return userService.verifyUser(user);
+    public ResponseEntity<String> loginViaPostman(@RequestBody PropertyOwner user, HttpServletResponse response) {
+        return userService.verifyUser(user, response);
     }
 
     @GetMapping("/user")
