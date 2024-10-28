@@ -38,7 +38,7 @@ public class Owners_Controller {
     }
 
     @GetMapping ("properties/{ownerId}")
-    public ResponseEntity<List<PropertiesDTO>> savePropertyOwners(@PathVariable("ownerId") String ownerId) {
+    public ResponseEntity<List<PropertiesDTO>> getAllOwnersProperties(@PathVariable("ownerId") String ownerId) {
         return ownersService.getAllOwnersProperties(ownerId);
     }
 }
