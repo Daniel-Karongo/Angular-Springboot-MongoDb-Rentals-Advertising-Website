@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.proxy.NoOp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -29,9 +30,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())  // Disable CSRF for simplicity in APIs
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/login", "/register", "/login").permitAll()  // Permit login/register pages
+
+                        // Allow all GET requests without authentication
+                        .requestMatchers(HttpMethod.GET, "/properties/**", "/owners/**").permitAll()
+
+                        // Allow POST requests for specific paths to require authentication
+                        .requestMatchers(HttpMethod.POST, "/properties/**", "/owners/**").authenticated()
+
                         .anyRequest().authenticated()  // Protect all other endpoints
                 )
                 .formLogin(formLogin -> formLogin

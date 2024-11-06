@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("properties")
+//@CrossOrigin(origins = "*")
 public class PropertiesController {
     @Autowired
     private PropertiesRentalsService propertiesRentalsService;

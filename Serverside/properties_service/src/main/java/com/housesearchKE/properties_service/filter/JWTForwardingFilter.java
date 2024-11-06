@@ -18,6 +18,12 @@ public class JWTForwardingFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+        if ("GET".equalsIgnoreCase(request.getMethod())) {
+            System.out.println("Get request. No authentication needed");
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // Extract the JWT token from the Authorization header
         String authHeader = request.getHeader("Authorization");
         System.out.println("authHeader: " + authHeader);

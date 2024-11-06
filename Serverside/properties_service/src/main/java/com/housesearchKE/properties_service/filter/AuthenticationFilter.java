@@ -28,8 +28,14 @@ public class AuthenticationFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        String authorizationHeader = httpRequest.getHeader("Authorization");
 
+        if ("GET".equalsIgnoreCase(httpRequest.getMethod())) {
+            System.out.println("Get request. No authentication needed");
+            chain.doFilter(request, response);
+            return;
+        }
+
+        String authorizationHeader = httpRequest.getHeader("Authorization");
 
         // Extract the JWT token from the 'Authorization' header
         String token = null;

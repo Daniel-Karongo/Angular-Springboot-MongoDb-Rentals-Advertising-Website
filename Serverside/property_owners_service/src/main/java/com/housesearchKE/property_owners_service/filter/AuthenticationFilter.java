@@ -34,6 +34,13 @@ public class AuthenticationFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        if ("GET".equalsIgnoreCase(httpRequest.getMethod())) {
+            System.out.println("Get request. No authentication needed");
+            chain.doFilter(request, response);
+            return;
+        }
+
         String authorizationHeader = httpRequest.getHeader("Authorization");
 
         System.out.println("authorizationHeader: " + authorizationHeader);
