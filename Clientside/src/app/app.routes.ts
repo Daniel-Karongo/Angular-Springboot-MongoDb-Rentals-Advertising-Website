@@ -9,4 +9,9 @@ export const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule)
   }
+  ,
+  {
+    path: ':location',
+    loadChildren: () => import('./modules/search_results/search-results.module').then((m) => m.SearchResultsModule)
+  }
 ];

@@ -3,15 +3,15 @@ export const environments = {
     propertiesApiBaseUrl: 'http://localhost:9002/properties',
     propertiesResourcesEndpoints: {
         getAllRentals: '',
-        getRental: '/property/{rentalId}',
+        getRental: '/property/',
         saveRental: '/property',
-        searchRentals: '/properties/{text}',
+        searchRentals: '/properties/',
     },
     ownersApiBaseUrl: 'http://localhost:9002/owners',
     ownersResourcesEndpoints: {
         getAllPropertyOwners: '',
-        getPropertyOwner: '/owner/{id}',
+        getPropertyOwner: '/owner/',
         savePropertyOwner: '/owner',
-        getAllOwnersProperties: '/properties/{ownerId}'
+        getAllOwnersProperties: '/properties/'
     }
 };

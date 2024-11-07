@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class NavigationBarComponent {
   constructor(private router: Router) {}
 
-  @Output() loginPageRequested = new EventEmitter<void>();
+  @Output() loginPageRequest = new EventEmitter<void>();
   
   loginPageInitialiser() {
-    this.loginPageRequested.emit()
+    this.loginPageRequest.emit();
     this.router.navigate(['/login']); // Navigate to the login route
   }
 }

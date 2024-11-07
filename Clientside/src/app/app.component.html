@@ -1,5 +1,5 @@
 <div class="container">
-    <app-navigation-bar (loginPageRequested)="loginPageInitialiser()" *ngIf="!isLoginPage"></app-navigation-bar>
-    <app-search-bar *ngIf="!isLoginPage"></app-search-bar>
+    <app-navigation-bar (loginPageRequest)="loginPageInitialiser()" *ngIf="isHomePage"></app-navigation-bar>
+    <app-search-bar *ngIf="isHomePage"></app-search-bar>
     <router-outlet></router-outlet>
 </div>

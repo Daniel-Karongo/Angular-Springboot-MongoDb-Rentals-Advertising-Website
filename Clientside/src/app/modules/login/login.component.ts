@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavigationServiceService } from '../../services/navigation-service/navigation-service.service';
 
 @Component({
   selector: 'app-login',
@@ -8,5 +10,15 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  constructor(
+    private router: Router, 
+    private navigationService: NavigationServiceService
+  ) {}
 
+  ngOnDestroy(): void {
+    console.log("Homepage recalled");
+    this.navigationService.emitHomePageRequest();
+    this.router.navigate(['/']);
+    console.log("Routing");
+  }
 }
