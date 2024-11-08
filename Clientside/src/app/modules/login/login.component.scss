@@ -1,0 +1,31 @@
+/* Basic link styles */
+a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+  
+  /* Hover effect */
+  a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+  }
+  
+  /* Visited link style */
+  a:visited {
+    color: #9b59b6;
+  }
+  
+  /* Active link style */
+  a:active {
+    color: #2ecc71;
+    font-weight: bold;
+  }
+  
+  /* Focused link style (for accessibility) */
+  a:focus {
+    outline: 3px solid #f39c12;
+  }
+  

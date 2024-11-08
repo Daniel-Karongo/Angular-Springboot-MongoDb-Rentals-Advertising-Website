@@ -10,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -38,29 +40,42 @@ public class UserService {
         return userRepository.findAll();
     }
 
+
     public ResponseEntity<String> verifyUser(PropertyOwner user, HttpServletResponse response) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmailAddress(), user.getPassword()));
-        // This will check the user against the database as earlier configured
+        try {
+            // Authenticate the user
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmailAddress(), user.getPassword()));
 
-        if(authentication.isAuthenticated()) {
-            String token = jwtService.generateToken(user.getEmailAddress());
-            if (token != null) {
-                // Set the JWT as an HTTP-only cookie
-                Cookie cookie = new Cookie("token", token);
-                cookie.setHttpOnly(true); // Prevents JavaScript access to the cookie
-                cookie.setSecure(true);   // Use in production over HTTPS
-                cookie.setPath("/");      // Make the cookie accessible on the entire site
-                cookie.setMaxAge(43200);   // Set the cookie expiration (1 hour)
+            // Check if authentication is successful
+            if (authentication.isAuthenticated()) {
+                String token = jwtService.generateToken(user.getEmailAddress());
+                if (token != null) {
+                    // Set the JWT as an HTTP-only cookie
+                    Cookie cookie = new Cookie("token", token);
+                    cookie.setHttpOnly(true);  // Prevents JavaScript access to the cookie
+                    cookie.setSecure(true);    // Use in production over HTTPS
+                    cookie.setPath("/");       // Makes the cookie accessible on the entire site
+                    cookie.setMaxAge(43200);   // Set the cookie expiration (12 hours)
 
-                // Add the cookie to the response
-                response.addCookie(cookie);
+                    // Add the cookie to the response
+                    response.addCookie(cookie);
 
-                return ResponseEntity.ok("Login successful. Token: " + token);
+                    // Send the response back with the token (Frontend will handle the redirect)
+                    return ResponseEntity.ok("Login successful. Token: " + token);
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Token generation error.");
+                }
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+                return new ResponseEntity<>("Authentication failed", HttpStatus.UNAUTHORIZED);
             }
-        } else {
-            return new ResponseEntity<>("Fail", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (AuthenticationException e) {
+            // Handle authentication errors (e.g., invalid credentials)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+        } catch (Exception e) {
+            // Catch all other unexpected errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
         }
     }
+
+
 }

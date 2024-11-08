@@ -40,6 +40,7 @@ public class UserController {
 
     @GetMapping("/user")
     public Principal getUser(Principal principal) {
+        System.out.println("Getting user");
         return principal;
     }
 

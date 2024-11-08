@@ -1,4 +1,5 @@
 import { Routes, ExtraOptions } from '@angular/router';
+import { ComponentNotFoundComponent } from './modules/component-not-found/component-not-found.component';
 
 export const routes: Routes = [
   {
@@ -11,7 +12,14 @@ export const routes: Routes = [
   }
   ,
   {
-    path: ':location',
+    path: 'results/:location',
     loadChildren: () => import('./modules/search_results/search-results.module').then((m) => m.SearchResultsModule)
-  }
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./modules/profile/profile-routing.module').then((m) => m.ProfileRoutingModule)
+  },
+  { 
+    path: '**', component: ComponentNotFoundComponent 
+  },     // Page 404 Not Found
 ];

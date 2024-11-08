@@ -1,1 +1,34 @@
-<p>Login page works</p>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="emailAddress"
+        />
+        <!-- @if (email.invalid) {
+        <mat-error>{{errorMessage()}}</mat-error>
+        } -->
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input
+        matInput
+        formControlName="password"
+        />
+        <!-- @if (password.invalid) {
+        <mat-error>{{errorMessage()}}</mat-error>
+        } -->
+    </mat-form-field>
+    <button
+      class="mdc-fab mdc-fab--extended"
+      [disabled]="loginForm.invalid"
+    >
+      <div class="mdc-fab__ripple"></div>
+      <span class="mdc-fab__label">Login</span>
+    </button>
+  </form>
+
+  <a (click)="redirectToGoogleOAuth()">Login with Google</a>
+  <br>
+  <a (click)="redirectToGithubOAuth()">Login with Github</a>

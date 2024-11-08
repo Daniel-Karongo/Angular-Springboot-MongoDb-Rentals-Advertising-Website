@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from "./modules/search/navigation-bar/navigation-bar.component";
 import { SearchBarComponent } from "./modules/search/search-bar/search-bar.component";
@@ -17,17 +17,34 @@ export class AppComponent implements OnInit {
   isLoginPage = false;
   isHomePage = true;
 
-  constructor(private navigationService: NavigationServiceService) {}
+  constructor(
+    private navigationService: NavigationServiceService,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
+
+    // Subscribe to home page requests
     this.navigationService.homePageRequest$.subscribe(() => {
       this.isHomePage = true;
       this.isLoginPage = false;
+
+      this.cdr.detectChanges();  // Trigger change detection after changing state
     });
+
+    // Subscribe to "no such page" requests
+    this.navigationService.clearAppComponent$.subscribe(() => {
+      this.isHomePage = false;
+      this.isLoginPage = false;
+      this.cdr.detectChanges();  // Trigger change detection
+  });
   }
 
   loginPageInitialiser() {
     this.isLoginPage = true;
     this.isHomePage = false;
+  }
+
+  ngOnDestroy(): void {
   }
 }

@@ -13,5 +13,12 @@ export const environments = {
         getPropertyOwner: '/owner/',
         savePropertyOwner: '/owner',
         getAllOwnersProperties: '/properties/'
+    },
+    apiGatewayBaseUrl: 'http://localhost:9002',
+    apiGatewayResourcesEndpoints: {
+        registerUser: '/user/register',
+        login: '/login',
+        loginViaPostman: '/api/login',
+        getUser: '/user'
     }
 };
