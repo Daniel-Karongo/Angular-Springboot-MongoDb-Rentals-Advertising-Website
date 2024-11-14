@@ -1,31 +1,108 @@
-/* Basic link styles */
-a {
-    text-decoration: none;
-    color: #3498db;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-    transition: color 0.3s, text-decoration 0.3s;
-  }
-  
-  /* Hover effect */
-  a:hover {
-    color: #e74c3c;
-    text-decoration: underline;
-  }
-  
-  /* Visited link style */
-  a:visited {
-    color: #9b59b6;
-  }
-  
-  /* Active link style */
-  a:active {
-    color: #2ecc71;
-    font-weight: bold;
-  }
-  
-  /* Focused link style (for accessibility) */
-  a:focus {
-    outline: 3px solid #f39c12;
-  }
-  
+/* Login container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  // width: 100;
+  margin-top: 5%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
+
+/* Form field styles */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+mat-form-field input {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* Button styles */
+button.mdc-fab {
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+button.mdc-fab:hover {
+  transform: translateY(-10px);
+}
+
+button.mdc-fab:disabled {
+  background-color: #cccccc6e;
+  cursor: not-allowed;
+}
+
+/* OAuth login links */
+.oauth {
+  text-align: center;
+  margin: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.oauth a {
+  color: #3498db;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.oauth a:hover {
+  text-decoration: underline;
+}
+
+/* Create account link */
+.create-account-anchor {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.create-account-anchor p {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.create-account-anchor a {
+  color: #3498db;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.create-account-anchor a:hover {
+  color: #e74c3c;
+  text-decoration: underline;
+}
+
+/* Form error message styles */
+mat-error {
+  font-size: 13px;
+  color: #e74c3c;
+  // margin-top: -1rem;
+  // margin-bottom: 1rem;
+  display: block;
+}
+
+/* Focus outline for accessibility */
+mat-form-field input:focus, button:focus, a:focus {
+  outline: 3px solid #f39c12;
+  outline-offset: 2px;
+  border-radius: 5px;
+}

@@ -1,34 +1,45 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input
-        matInput
-        placeholder="pat@example.com"
-        formControlName="emailAddress"
-        />
-        <!-- @if (email.invalid) {
-        <mat-error>{{errorMessage()}}</mat-error>
-        } -->
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>Enter your email</mat-label>
+      <input 
+        matInput 
+        placeholder="pat@example.com" 
+        type="text" 
+        formControlName="emailAddress" 
+      required>
+      <mat-error *ngIf="loginForm.get('emailAddress')?.invalid">
+        {{ errorMessage('email') }}
+      </mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your password</mat-label>
-        <input
-        matInput
-        formControlName="password"
-        />
-        <!-- @if (password.invalid) {
-        <mat-error>{{errorMessage()}}</mat-error>
-        } -->
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>Enter your password</mat-label>
+      <input 
+        matInput 
+        type="password" 
+        formControlName="password" />
+      <mat-error *ngIf="loginForm.get('password')?.invalid">
+        {{ errorMessage('password') }}
+      </mat-error>
     </mat-form-field>
+
     <button
       class="mdc-fab mdc-fab--extended"
       [disabled]="loginForm.invalid"
+      type="submit"
     >
       <div class="mdc-fab__ripple"></div>
       <span class="mdc-fab__label">Login</span>
     </button>
   </form>
 
-  <a (click)="redirectToGoogleOAuth()">Login with Google</a>
-  <br>
-  <a (click)="redirectToGithubOAuth()">Login with Github</a>
+  <div class="oauth">
+    <a (click)="redirectToGoogleOAuth()">Login with Google</a>
+    <a (click)="redirectToGithubOAuth()">Login with Github</a>
+  </div>
+  
+  <div class="create-account-anchor">
+    <p>Don't have an account?</p>
+    <a [routerLink]="['/create-account']">Create Account</a>
+  </div>
+</div>

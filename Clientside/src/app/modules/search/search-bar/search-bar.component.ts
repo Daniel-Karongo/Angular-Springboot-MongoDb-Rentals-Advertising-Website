@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PropertiesServiceService } from '../../../services/properties-service/properties-service.service';
 import { Observable } from 'rxjs';
 import { PropertiesDTO } from '../../../models/PropertiesDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -21,7 +22,8 @@ export class SearchBarComponent {
 
   constructor(
     private fb: FormBuilder,
-    private propertiesService: PropertiesServiceService
+    private propertiesService: PropertiesServiceService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,8 @@ export class SearchBarComponent {
       (data: PropertiesDTO[]) => {
         this.rentals = data;
         console.log(this.rentals);
+        this.route.navigateByUrl('/results/' + criteria);
+
       },
       (error) => {
         console.error('Error fetching rentals', error);

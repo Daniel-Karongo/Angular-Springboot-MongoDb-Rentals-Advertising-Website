@@ -14,4 +14,5 @@ public class PropertyOwner {
     private String phoneNumber;
     private String emailAddress;
     private String password;
+    private String authToken;
 }

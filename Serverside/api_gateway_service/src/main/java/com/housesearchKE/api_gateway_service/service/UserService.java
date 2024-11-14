@@ -2,7 +2,6 @@ package com.housesearchKE.api_gateway_service.service;
 
 import com.housesearchKE.api_gateway_service.model.PropertyOwner;
 import com.housesearchKE.api_gateway_service.repo.UserRepository;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +10,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -40,6 +39,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public PropertyOwner getUser(String emailAddress) {
+        return userRepository.findByEmailAddress(emailAddress);
+    }
 
     public ResponseEntity<String> verifyUser(PropertyOwner user, HttpServletResponse response) {
         try {
@@ -50,17 +52,29 @@ public class UserService {
             if (authentication.isAuthenticated()) {
                 String token = jwtService.generateToken(user.getEmailAddress());
                 if (token != null) {
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+
                     // Set the JWT as an HTTP-only cookie
-                    Cookie cookie = new Cookie("token", token);
-                    cookie.setHttpOnly(true);  // Prevents JavaScript access to the cookie
-                    cookie.setSecure(true);    // Use in production over HTTPS
-                    cookie.setPath("/");       // Makes the cookie accessible on the entire site
-                    cookie.setMaxAge(43200);   // Set the cookie expiration (12 hours)
+//                    Cookie cookie = new Cookie("authToken", token);
+//                    cookie.setPath("/");
+//                    cookie.setHttpOnly(false);  // Prevents JavaScript access to the cookie
+//                    cookie.setSecure(false);    // Use in production over HTTPS
+////                    cookie.setDomain("localhost");       // Makes the cookie accessible on the entire site
+//                    cookie.setMaxAge(43200);   // Set the cookie expiration (12 hours)
 
                     // Add the cookie to the response
-                    response.addCookie(cookie);
+//                    response.addCookie(cookie);
+//                    response.addHeader("Set-Cookie", "authToken=" + token + "; Path=/; HttpOnly; Max-Age=43200; Secure; SameSite=None");
+                    response.addHeader("Set-Cookie", "authToken=" + token + "; Path=/; HttpOnly; Max-Age=43200; SameSite=None");
+
+//                    String cookieString = "Cookie: " + cookie.getName() + "=" + cookie.getValue();
+//                    System.out.println(cookieString);
 
                     // Send the response back with the token (Frontend will handle the redirect)
+
+
+
+
                     return ResponseEntity.ok("Login successful. Token: " + token);
                 } else {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Token generation error.");

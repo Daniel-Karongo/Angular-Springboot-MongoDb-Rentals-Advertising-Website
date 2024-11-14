@@ -1,31 +1,34 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavigationServiceService } from '../../services/navigation-service/navigation-service.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatFormField } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ApiGatewayServiceService } from '../../services/api-gateway-service/api-gateway-service.service';
+import { NavigationServiceService } from '../../services/navigation-service/navigation-service.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatFormField, MatInputModule, ReactiveFormsModule],
+  imports: [
+    FormsModule, CommonModule, ReactiveFormsModule, RouterModule,
+    MatFormFieldModule, MatInputModule
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   
   loginForm!: FormGroup;
   token!: string;
   loginSuccessful: boolean = false;
-  message!: string;  // New variable to hold the success message
+  message!: string;
   
   constructor(
     private router: Router, 
     private navigationService: NavigationServiceService,
     private fb: FormBuilder,
-    private apiGateWayService: ApiGatewayServiceService
+    private apiGatewayService: ApiGatewayServiceService
   ) {}
 
   ngOnInit(): void {
@@ -36,38 +39,41 @@ export class LoginComponent {
   }
   
   login(): void {
-    console.log(this.loginForm.value);
-    this.apiGateWayService.login(this.loginForm.value).subscribe(
-      (data) => {
-        this.token = data;
-        console.log(this.token);
-        if (data.includes('Login successful') && !this.token.includes('oauth')) {  // Assuming oauth token doesn't include 'oauth'
-          console.log("Navigating to profile");
-          this.loginSuccessful = true;
-          this.router.navigate(['/profile']);
+    if (this.loginForm.valid) {
+      this.apiGatewayService.login(this.loginForm.value).subscribe(
+        (data) => {
+          this.token = data;
+          if (data.includes('Login successful') && !this.token.includes('oauth')) {
+            this.loginSuccessful = true;
+            this.router.navigate(['/profile']);
+          }
+        },
+        (error) => {
+          console.error('Error logging in', error);
         }
-      },
-      (error) => {
-        console.error('Error logging in', error);
-      }
-    );
+      );
+    }
   }
-  
+
+  errorMessage(field: string): string {
+    if (field === 'email' && this.loginForm.get('emailAddress')?.hasError('required')) {
+      return 'Email is required';
+    } else if (field === 'email' && this.loginForm.get('emailAddress')?.hasError('email')) {
+      return 'Invalid email format';
+    } else if (field === 'password' && this.loginForm.get('password')?.hasError('required')) {
+      return 'Password is required';
+    }
+    return '';
+  }
 
   redirectToGoogleOAuth() {
-    console.log("Login with Google");
-    this.apiGateWayService.redirectToGoogleOAuth();
+    this.apiGatewayService.redirectToGoogleOAuth();
   }
 
   redirectToGithubOAuth() {
-    console.log("Login with Github");
-    this.apiGateWayService.redirectToGithubOAuth();
+    this.apiGatewayService.redirectToGithubOAuth();
   }
 
   ngOnDestroy(): void {
-    if(!this.loginSuccessful) {
-      this.navigationService.emitHomePageRequest();
-      this.router.navigate(['/']);
-    }
   }
 }

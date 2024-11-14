@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavigationBarComponent } from "./modules/search/navigation-bar/navigation-bar.component";
 import { SearchBarComponent } from "./modules/search/search-bar/search-bar.component";
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { NavigationServiceService } from './services/navigation-service/navigati
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationBarComponent, SearchBarComponent, CommonModule],
+  imports: [NavigationBarComponent, SearchBarComponent, CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -19,25 +19,29 @@ export class AppComponent implements OnInit {
 
   constructor(
     private navigationService: NavigationServiceService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
+    private route: Router
   ) {}
 
   ngOnInit() {
+    this.isHomePage = true;
+    this.isLoginPage = false;
 
-    // Subscribe to home page requests
-    this.navigationService.homePageRequest$.subscribe(() => {
-      this.isHomePage = true;
-      this.isLoginPage = false;
+    this.route.navigateByUrl('/');
+  //   // Subscribe to home page requests
+  //   this.navigationService.homePageRequest$.subscribe(() => {
+  //     this.isHomePage = true;
+  //     this.isLoginPage = false;
 
-      this.cdr.detectChanges();  // Trigger change detection after changing state
-    });
+  //     this.cdr.detectChanges();  // Trigger change detection after changing state
+  //   });
 
-    // Subscribe to "no such page" requests
-    this.navigationService.clearAppComponent$.subscribe(() => {
-      this.isHomePage = false;
-      this.isLoginPage = false;
-      this.cdr.detectChanges();  // Trigger change detection
-  });
+  //   // Subscribe to "no such page" requests
+  //   this.navigationService.clearAppComponent$.subscribe(() => {
+  //     this.isHomePage = false;
+  //     this.isLoginPage = false;
+  //     this.cdr.detectChanges();  // Trigger change detection
+  // });
   }
 
   loginPageInitialiser() {

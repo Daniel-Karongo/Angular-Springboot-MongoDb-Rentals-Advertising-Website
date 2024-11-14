@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -38,10 +38,9 @@ public class UserController {
         return userService.verifyUser(user, response);
     }
 
-    @GetMapping("/user")
-    public Principal getUser(Principal principal) {
-        System.out.println("Getting user");
-        return principal;
+    @PostMapping("/user")
+    public PropertyOwner getUser(@RequestBody String emailAddress) {
+        System.out.println(userService.getUser(emailAddress));
+        return userService.getUser(emailAddress);
     }
-
 }

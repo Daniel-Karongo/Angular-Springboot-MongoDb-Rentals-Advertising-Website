@@ -5,13 +5,12 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,4 +79,18 @@ public class JWTService {
     private Date extractExpiration(String jwTtoken) {
         return extractClaim(jwTtoken, Claims::getExpiration);
     }
+
+
+    private Object extractUserPrincipal() {
+        // Retrieve the Principal from the SecurityContextHolder
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            System.out.println("Authenticated Principal: " + principal);
+            return principal;
+        }
+        return null;
+    }
+
+
 }
