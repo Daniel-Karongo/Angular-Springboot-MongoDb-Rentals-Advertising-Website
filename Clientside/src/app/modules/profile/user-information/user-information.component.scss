@@ -1,0 +1,33 @@
+/* Example for user Information */
+.user-information {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.user-information form {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.user-information button {
+  padding: 8px 16px;
+  background-color: rgb(1, 135, 134);;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  align-self: center;
+}
+
+button.mdc-fab:disabled {
+  background-color: #cccccc6e;
+  cursor: not-allowed;
+}
+
+button:hover {
+  opacity: 0.8;
+}

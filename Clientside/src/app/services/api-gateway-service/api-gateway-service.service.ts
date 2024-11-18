@@ -9,11 +9,23 @@ import { User } from '../../models/User';
   providedIn: 'root'
 })
 export class ApiGatewayServiceService {
+  private emailAddress!: string;
+  private password!: string;
+
+  get _emailAddress(): string {
+    return this.emailAddress;
+  }
+
+  get _password(): string {
+    return this.password;
+  }
 
   private baseUrl = environments.apiGatewayBaseUrl;
   private endpoints = environments.apiGatewayResourcesEndpoints;
 
   constructor(private http: HttpClient) { 
+    console.log("API GATEWAY");
+    console.log(this);
   }
 
   // registerUser: '/user/register',
@@ -44,18 +56,21 @@ export class ApiGatewayServiceService {
         // Get the token from the cookie
         const tokenFromCookie = this.getCookie('authToken'); // Replace 'authToken' with your cookie name
         
-        localStorage.setItem('emailAddress', user.emailAddress);
-        localStorage.setItem('password', user.password);
+        // localStorage.setItem('emailAddress', user.emailAddress);
+        // localStorage.setItem('password', user.password);
   
+        this.emailAddress = user.emailAddress;
+        this.password = user.password;
+
         // Remove emailAddress after 10 seconds
-        setTimeout(() => {
-          localStorage.removeItem('emailAddress');
-        }, 10000);
+        // setTimeout(() => {
+        //   localStorage.removeItem('emailAddress');
+        // }, 10000);
   
         // Remove password after 30 seconds
-        setTimeout(() => {
-          localStorage.removeItem('password');
-        }, 30000);
+        // setTimeout(() => {
+        //   localStorage.removeItem('password');
+        // }, 30000);
   
         if (tokenFromCookie) {
           // If token is found in the cookie, store it in localStorage
@@ -105,16 +120,14 @@ export class ApiGatewayServiceService {
   }
 
   getUser(): Observable<any> {
-    const emailAddress = localStorage.getItem('emailAddress');
+    // const emailAddress = localStorage.getItem('emailAddress');
+    const emailAddress = this.emailAddress;
 
     const url = `${this.baseUrl}${this.endpoints.getUser}`;
     const request = new HttpRequest('POST', url, emailAddress, {
       reportProgress: true,
       withCredentials: true
     });
-
-    console.log(url);
-    console.log(request);
 
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response

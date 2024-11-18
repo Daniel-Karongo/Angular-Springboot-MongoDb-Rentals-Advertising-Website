@@ -1,0 +1,26 @@
+<div class="dashboard-container">
+  <!-- Top Section with Logout and Salutation -->
+  <div class="top-section">
+    <h1>Hello <span>{{ username }} </span></h1>
+    <button
+    class="mdc-fab mdc-fab--extended"
+    (click)="logout()"
+  >
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__label">Logout</span>
+  </button>
+  </div>
+
+  <!-- Main Section with Router Outlet -->
+  <div class="main-section">
+    <div class="button-group">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle (click)="navigateTo('user-information')">User Information</mat-button-toggle>
+          <mat-button-toggle [checked]="true" (click)="navigateTo('rentals')">My Rentals</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <!-- Child component will be rendered here -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
