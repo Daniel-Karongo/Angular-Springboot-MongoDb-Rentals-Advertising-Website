@@ -16,6 +16,10 @@ export const routes: Routes = [
     loadChildren: () => import('./modules/search_results/search-results.module').then((m) => m.SearchResultsModule)
   },
   {
+    path: 'create-account',
+    loadChildren: () => import('./modules/create_account/create-account.module').then((m) => m.CreateAccountModule)
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./modules/profile/profile-routing.module').then((m) => m.ProfileRoutingModule)
   },

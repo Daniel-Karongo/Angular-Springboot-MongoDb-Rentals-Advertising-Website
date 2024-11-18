@@ -21,7 +21,8 @@ export class ApiGatewayServiceService {
   // loginViaPostman: '/api/login',
   // getUser: '/user'
 
-  registerUser(user: User): Observable<User> {
+  registerUser(user: PropertyOwner): Observable<PropertyOwner> {
+    console.log(user)
     const url = `${this.baseUrl}${this.endpoints.registerUser}`;
     const request = new HttpRequest('POST', url, user, {
       reportProgress: true
@@ -32,7 +33,7 @@ export class ApiGatewayServiceService {
 
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response
-      map((event: any) => event.body as User)                          // Extract the response body
+      map((event: any) => event.body as PropertyOwner)                          // Extract the response body
     );
   }
 
