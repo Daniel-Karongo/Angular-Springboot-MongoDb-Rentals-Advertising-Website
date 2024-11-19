@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environments } from '../../../environment/environment';
 import { HttpClient, HttpEventType, HttpRequest } from '@angular/common/http';
 import { filter, map, Observable } from 'rxjs';
-import { Property } from '../../models/Property';
 import { PropertyOwner } from '../../models/PropertyOwner';
 import { PropertiesDTO } from '../../models/PropertiesDTO';
 
@@ -42,8 +41,6 @@ export class PropertyOwnersServiceService {
       withCredentials: true
     });
 
-    console.log(request);
-
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response
       map((event: any) => event.body as PropertyOwner)                          // Extract the response body
@@ -56,8 +53,6 @@ export class PropertyOwnersServiceService {
       reportProgress: true,
       withCredentials: true
     });
-
-    console.log(request);
 
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response

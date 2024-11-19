@@ -38,12 +38,14 @@ public class PropertiesRentalsService {
             PropertiesDTO propertyDTO = new PropertiesDTO();
             propertyDTO.setRentalId(property.getRentalId());
             propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
+            propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
+            propertyDTO.setPhotoUrls(property.getPhotoUrls());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
-            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setLocation(property.getLocation());
             propertyDTO.setAmmenities(property.getAmmenities());
             propertyDTO.setRating(property.getRating());
@@ -67,12 +69,14 @@ public class PropertiesRentalsService {
             PropertiesDTO propertyDTO = new PropertiesDTO();
             propertyDTO.setRentalId(id);
             propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setPlotSummaryDescription(prop.get().getPlotSummaryDescription());
+            propertyDTO.setPlotDetailedDescription(prop.get().getPlotDetailedDescription());
+            propertyDTO.setPhotoUrls(prop.get().getPhotoUrls());
             propertyDTO.setTerm(prop.get().getTerm());
             propertyDTO.setAmount(prop.get().getAmount());
             propertyDTO.setTenantPreferences(prop.get().getTenantPreferences());
             propertyDTO.setNumberOfOccupants(prop.get().getNumberOfOccupants());
             propertyDTO.setType(prop.get().getType());
-            propertyDTO.setPhotographs(prop.get().getPhotographs());
             propertyDTO.setLocation(prop.get().getLocation());
             propertyDTO.setAmmenities(prop.get().getAmmenities());
             propertyDTO.setRating(prop.get().getRating());
@@ -137,12 +141,14 @@ public class PropertiesRentalsService {
 
             propertyDTO.setRentalId(property.getRentalId());
             propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
+            propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
+            propertyDTO.setPhotoUrls(property.getPhotoUrls());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
-            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setLocation(property.getLocation());
             propertyDTO.setAmmenities(property.getAmmenities());
             propertyDTO.setRating(property.getRating());
@@ -178,12 +184,14 @@ public class PropertiesRentalsService {
 
             propertyDTO.setRentalId(property.getRentalId());
             propertyDTO.setPropertyOwner(owner);
+            propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
+            propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
+            propertyDTO.setPhotoUrls(property.getPhotoUrls());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
-            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setLocation(property.getLocation());
             propertyDTO.setAmmenities(property.getAmmenities());
             propertyDTO.setRating(property.getRating());

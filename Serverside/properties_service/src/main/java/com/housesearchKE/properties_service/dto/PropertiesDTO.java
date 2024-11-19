@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 public class PropertiesDTO {
     private String rentalId;
     private PropertyOwner propertyOwner;
+    private String plotSummaryDescription;
+    private String plotDetailedDescription;
+    private String[] photoUrls;
     private String term;
     private Integer amount;
     private String[] tenantPreferences;

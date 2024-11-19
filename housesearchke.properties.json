@@ -86,4 +86,168 @@
   ],
   "rating": 4.5,
   "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "67177302e6758a163af5715c"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "term": "Year",
+  "amount": 60000,
+  "tenantPreferences": [
+    "Christians"
+  ],
+  "numberOfOccupants": 0,
+  "type": "Business Premise",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Security",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4,
+  "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "671774378b4bca7d4aca1f94"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "term": "Monthly",
+  "amount": 20000,
+  "tenantPreferences": [
+    "Family"
+  ],
+  "numberOfOccupants": 0,
+  "type": "2-bedroom house",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "South C",
+  "ammenities": [
+    "Wi-fi",
+    "Security",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4.7,
+  "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "671774378b4bca7d4aca1f95"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "term": "Daily",
+  "amount": 3000,
+  "tenantPreferences": [
+    "Christians"
+  ],
+  "numberOfOccupants": 0,
+  "type": "Suite",
+  "photographs": [
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
+    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+  ],
+  "location": "Nairobi",
+  "ammenities": [
+    "Wi-fi",
+    "Security",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4.6,
+  "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "673c90e86c01ba71695a921e"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "plotSummaryDescription": "The standard Lorem Ipsum passage, used since the 1500s",
+  "plotDetailedDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "term": "Year",
+  "amount": 50000,
+  "tenantPreferences": [
+    "Christians"
+  ],
+  "numberOfOccupants": 0,
+  "type": "Hostel",
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Security",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4,
+  "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "673c90e86c01ba71695a921f"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "plotSummaryDescription": "The standard Lorem Ipsum passage, used since the 1500s",
+  "plotDetailedDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "term": "Monthly",
+  "amount": 6000,
+  "tenantPreferences": [
+    "Students",
+    "Male",
+    "Christians"
+  ],
+  "numberOfOccupants": 2,
+  "type": "Bedsitter",
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 3.5,
+  "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "673c90e86c01ba71695a9220"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "plotSummaryDescription": "The standard Lorem Ipsum passage, used since the 1500s",
+  "plotDetailedDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "term": "Monthly",
+  "amount": 12000,
+  "tenantPreferences": [
+    "Students",
+    "Male",
+    "Christians"
+  ],
+  "numberOfOccupants": 2,
+  "type": "House",
+  "location": "Thika",
+  "ammenities": [
+    "Wi-fi",
+    "Water",
+    "Ceiling",
+    "Cctv"
+  ],
+  "rating": 4.5,
+  "_class": "com.housesearchKE.properties_service.model.Property"
 }]

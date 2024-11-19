@@ -12,13 +12,15 @@ public class Property {
     private String rentalId;
 
     private String propertyOwnerId;
+    private String plotSummaryDescription;
+    private String plotDetailedDescription;
+    private String[] photoUrls;
     private String term;
     private int amount;
     private String[] tenantPreferences;
     @Nullable
     private int numberOfOccupants;
     private String type;
-    private String[] photographs;
     private String location;
     private String[] ammenities;
     private double rating;

@@ -1,26 +1,30 @@
 export class Property {
     #rentalId!: string;
     #propertyOwnerId!: string;
+    #plotSummaryDescription!: string;
+    #plotDetailedDescription!: string;
+    #photoUrls!: string[];
     #term!: string;
     #amount!: number;
     #tenantPreferences!: string[];
     #numberOfOccupants!: number;
     #type!: string;
-    #photographs!: string[];
     #location!: string;
     #amenities!: string[];
     #rating!: number;
 
     constructor(
-        propertyOwnerId: string, term: string, amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, photographs: string[], location: string, amenities: string[], rating: number
+        propertyOwnerId: string, term: string, plotSummaryDescription: string, plotDetailedDescription: string, photoUrls: string[], amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number
     ) {
         this.#propertyOwnerId = propertyOwnerId;
+        this.#plotSummaryDescription = plotSummaryDescription;
+        this.#plotDetailedDescription = plotDetailedDescription;
+        this.#photoUrls = photoUrls;
         this.#term = term;
         this.#amount = amount;
         this.#tenantPreferences = tenantPreferences;
         this.#numberOfOccupants = numberOfOccupants;
         this.#type = type;
-        this.#photographs = photographs;
         this.#location = location;
         this.#amenities = amenities;
         this.#rating = rating;
@@ -32,6 +36,15 @@ export class Property {
     }
     get propertyOwnerId(): string {
         return this.#propertyOwnerId;
+    }
+    get plotSummaryDescription(): string {
+        return this.#plotSummaryDescription;
+    }
+    get plotDetailedDescription(): string {
+        return this.#plotDetailedDescription;
+    }
+    get photoUrls(): string[] {
+        return this.#photoUrls;
     }
     get term(): string {
         return this.#term;
@@ -47,9 +60,6 @@ export class Property {
     }
     get type():  string {
         return this.#type;
-    }
-    get photographs(): string[] {
-        return this.#photographs;
     }
     get location(): string {
         return this.#location;
@@ -69,6 +79,15 @@ export class Property {
     set propertyOwnerId(propertyOwnerId: string) {
         this.#propertyOwnerId = propertyOwnerId;
     }
+    set plotSummaryDescription(plotSummaryDescription: string) {
+        this.#plotSummaryDescription = plotSummaryDescription;
+    }
+    set plotDetailedDescription(plotDetailedDescription: string) {
+        this.#plotDetailedDescription = plotDetailedDescription;
+    }
+    set photoUrls(photoUrls: string[]) {
+        this.#photoUrls = photoUrls;
+    }
     set term(term: string) {
         this.#term = term;
     }
@@ -84,9 +103,6 @@ export class Property {
     set type(type:  string) {
         this.#type = type;
     }
-    set photographs(photographs: string[]) {
-        this.#photographs = photographs;
-    }
     set location(location: string) {
         this.#location = location;
     }
@@ -98,6 +114,6 @@ export class Property {
     }
 
     toString(): string {
-        return `Property [rentalId=${this.#rentalId}, propertyOwnerId=${this.#propertyOwnerId}, term=${this.#term}, amount=${this.#amount}, tenantPreferences=${this.#tenantPreferences.join(', ')}, numberOfOccupants=${this.#numberOfOccupants}, type=${this.#type}, location=${this.#location}, amenities=${this.#amenities.join(', ')}, rating=${this.#rating}]`;
+        return `Property [rentalId=${this.#rentalId}, propertyOwnerId=${this.#propertyOwnerId}, plotSummaryDescription=${this.#plotSummaryDescription}, plotDetailedDescription=${this.#plotDetailedDescription}, photoUrls=${this.#photoUrls.join(', ')}, term=${this.#term}, amount=${this.#amount}, tenantPreferences=${this.#tenantPreferences.join(', ')}, numberOfOccupants=${this.#numberOfOccupants}, type=${this.#type}, location=${this.#location}, amenities=${this.#amenities.join(', ')}, rating=${this.#rating}]`;
     }
 }
