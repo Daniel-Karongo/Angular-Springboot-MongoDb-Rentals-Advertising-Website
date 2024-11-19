@@ -6,24 +6,30 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-information',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule],
   templateUrl: './user-information.component.html',
   styleUrl: './user-information.component.scss'
 })
 export class UserInformationComponent {
   user!: PropertyOwner; // Accept user data as an input
   userInformationForm!: FormGroup;
-
+  hidePassword: boolean = true;
+  
   constructor(
     private fb: FormBuilder,
-    private apiGatewayService: ApiGatewayServiceService
+    private apiGatewayService: ApiGatewayServiceService,
+    private snackBar: MatSnackBar
   ) {  }
 
   ngOnInit(): void {
+    console.log("Initialising user information component");
+
     this.userInformationForm = this.fb.group({
       id: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -82,7 +88,28 @@ export class UserInformationComponent {
   }
 
   editUserDetails(): void {
-    console.log('Edit user information');
-    // Add logic for editing user info
+    if (this.userInformationForm.valid) {
+      this.apiGatewayService.registerUser(this.userInformationForm.value).subscribe(
+        (data) => {
+          this.snackBar.open('User information updated successfully!', 'Close', {
+            duration: 6000, // Snackbar will auto-close after 3 seconds
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        },
+        (error) => {
+          console.error('Error creating account:', error);
+          this.snackBar.open('Failed to update user information. Please try again.', 'Close', {
+            duration: 6000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      );
+    }
+  }
+  
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }

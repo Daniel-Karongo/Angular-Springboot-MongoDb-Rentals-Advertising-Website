@@ -14,16 +14,16 @@ body {
 }
 
 .mdc-fab {
-    transition: background-color 0.3s, opacity 0.3s;
-  
-    &.disabled {
-      background-color: grey;
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  
-    &.enabled {
-      background-color: var(--mdc-theme-secondary, #018786);
-      cursor: pointer;
-    }
+  transition: background-color 0.3s, opacity 0.3s;
+
+  &.disabled {
+    background-color: grey;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
+
+  &.enabled {
+    background-color: var(--mdc-theme-secondary, #018786);
+    cursor: pointer;
+  }
+}

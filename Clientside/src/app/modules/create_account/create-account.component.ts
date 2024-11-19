@@ -1,17 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-create-account',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './create-account.component.html',
-//   styleUrl: './create-account.component.scss'
-// })
-// export class CreateAccountComponent {
-
-// }
-
-
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -19,23 +5,27 @@ import { ApiGatewayServiceService } from '../../services/api-gateway-service/api
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-create-account',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule],
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent implements OnDestroy {
 
   createAccountForm!: FormGroup;
+  hidePassword: boolean = true;
 
   constructor(
     private fb: FormBuilder,
     private apiGatewayService: ApiGatewayServiceService,
     private router: Router,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -60,10 +50,20 @@ export class CreateAccountComponent implements OnDestroy {
       this.apiGatewayService.registerUser(this.createAccountForm.value).subscribe(
         (data) => {
           console.log('Account created successfully:', data);
+          this.snackBar.open('Account created successfully', 'X', {
+            duration: 6000, // Snackbar will auto-close after 3 seconds
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
           this.router.navigate(['/profile']);
         },
         (error) => {
           console.error('Error creating account:', error);
+          this.snackBar.open('Account creation failed. Please try again', 'X', {
+            duration: 6000, // Snackbar will auto-close after 3 seconds
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         }
       );
     }
@@ -102,5 +102,9 @@ export class CreateAccountComponent implements OnDestroy {
       : { passwordMismatch: true };
   }
 
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+  
   ngOnDestroy(): void {}
 }

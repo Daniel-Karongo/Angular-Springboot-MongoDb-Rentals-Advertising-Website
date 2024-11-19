@@ -34,7 +34,10 @@
   
       <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+        <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="'Show/Hide Password'" [attr.aria-pressed]="!hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
         <mat-error *ngIf="createAccountForm.get('password')?.invalid">
           {{ errorMessage('password') }}
         </mat-error>
@@ -43,7 +46,10 @@
       <!-- Confirm Password field -->
       <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Confirm Password</mat-label>
-        <input matInput type="password" formControlName="confirmPassword" required />
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" required />
+        <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="'Show/Hide Password'" [attr.aria-pressed]="!hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
         <mat-error *ngIf="createAccountForm.get('confirmPassword')?.hasError('required')">
           {{ errorMessage('confirmPassword') }}
         </mat-error>

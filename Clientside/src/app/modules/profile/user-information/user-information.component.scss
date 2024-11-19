@@ -13,7 +13,13 @@
   width: 100%;
 }
 
-.user-information button {
+button[mat-icon-button] {
+  // all: unset; /* Reset all inherited styles */
+  border: none;
+  background-color: transparent;
+}
+
+.user-information button mdc-fab {
   padding: 8px 16px;
   background-color: rgb(1, 135, 134);;
   color: white;
@@ -24,7 +30,7 @@
 }
 
 button.mdc-fab:disabled {
-  background-color: #cccccc6e;
+  background-color: grey;
   cursor: not-allowed;
 }
 

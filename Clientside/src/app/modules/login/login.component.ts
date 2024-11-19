@@ -6,13 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ApiGatewayServiceService } from '../../services/api-gateway-service/api-gateway-service.service';
 import { NavigationServiceService } from '../../services/navigation-service/navigation-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule, CommonModule, ReactiveFormsModule, RouterModule,
-    MatFormFieldModule, MatInputModule
+    MatFormFieldModule, MatInputModule, MatIconModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -23,12 +25,14 @@ export class LoginComponent implements OnDestroy {
   token!: string;
   loginSuccessful: boolean = false;
   message!: string;
+  hidePassword: boolean = true;
   
   constructor(
     private router: Router, 
     private navigationService: NavigationServiceService,
     private fb: FormBuilder,
-    private apiGatewayService: ApiGatewayServiceService
+    private apiGatewayService: ApiGatewayServiceService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,11 +49,21 @@ export class LoginComponent implements OnDestroy {
           this.token = data;
           if (data.includes('Login successful') && !this.token.includes('oauth')) {
             this.loginSuccessful = true;
+            this.snackBar.open('Login successful', 'X', {
+              duration: 6000, // Snackbar will auto-close after 3 seconds
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
             this.router.navigate(['/profile']);
           }
         },
         (error) => {
           console.error('Error logging in', error);
+          this.snackBar.open('Invalid credentials. Please try again.', 'X', {
+            duration: 6000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         }
       );
     }
@@ -74,6 +88,10 @@ export class LoginComponent implements OnDestroy {
     this.apiGatewayService.redirectToGithubOAuth();
   }
 
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+  
   ngOnDestroy(): void {
   }
 }

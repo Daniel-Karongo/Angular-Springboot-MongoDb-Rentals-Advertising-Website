@@ -4,6 +4,7 @@ import { HttpClient, HttpEventType, HttpRequest } from '@angular/common/http';
 import { filter, map, Observable } from 'rxjs';
 import { PropertyOwner } from '../../models/PropertyOwner';
 import { User } from '../../models/User';
+import { v4 as uuidv4 } from 'uuid'; // Import the UUID function
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,12 @@ export class ApiGatewayServiceService {
 
   private baseUrl = environments.apiGatewayBaseUrl;
   private endpoints = environments.apiGatewayResourcesEndpoints;
+  
+  private readonly instanceId: string;
 
   constructor(private http: HttpClient) { 
-    console.log("API GATEWAY");
-    console.log(this);
+    this.instanceId = uuidv4(); // Generate a unique ID
+    console.log(`API GATEWAY instance ID: ${this.instanceId}`);
   }
 
   // registerUser: '/user/register',
@@ -34,18 +37,18 @@ export class ApiGatewayServiceService {
   // getUser: '/user'
 
   registerUser(user: PropertyOwner): Observable<PropertyOwner> {
-    console.log(user)
     const url = `${this.baseUrl}${this.endpoints.registerUser}`;
     const request = new HttpRequest('POST', url, user, {
       reportProgress: true
     });
 
-    console.log(url);
-    console.log(request);
-
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response
-      map((event: any) => event.body as PropertyOwner)                          // Extract the response body
+      map((event: any) => {
+        this.password = user.password;
+        this.emailAddress = user.emailAddress;
+        return event.body as PropertyOwner
+      })                          // Extract the response body
     );
   }
 
@@ -110,9 +113,6 @@ export class ApiGatewayServiceService {
       responseType: 'text'
     });
 
-    console.log(url);
-    console.log(request);
-
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response
       map((event: any) => event.body as string)                          // Extract the response body
@@ -140,9 +140,6 @@ export class ApiGatewayServiceService {
     const request = new HttpRequest('GET', url, {
       reportProgress: true
     });
-
-    console.log(url);
-    console.log(request);
 
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response

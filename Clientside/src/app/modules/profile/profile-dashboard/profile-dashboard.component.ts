@@ -32,7 +32,7 @@ export class ProfileDashboardComponent {
     this.apiGatewayService.getUser().subscribe(
       (data) => {
         this.user = data;
-        this.username = this.user.firstName + " " + this.user.lastName;
+        this.username = this.user.firstName;
       },
       (error) => {
         console.error('Error fetching user data in', error);

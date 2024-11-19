@@ -16,8 +16,11 @@
       <mat-label>Enter your password</mat-label>
       <input 
         matInput 
-        type="password" 
+        [type]="hidePassword ? 'password' : 'text'" 
         formControlName="password" />
+        <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="'Show/Hide Password'" [attr.aria-pressed]="!hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
       <mat-error *ngIf="loginForm.get('password')?.invalid">
         {{ errorMessage('password') }}
       </mat-error>
