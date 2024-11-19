@@ -28,8 +28,6 @@ export class UserInformationComponent {
   ) {  }
 
   ngOnInit(): void {
-    console.log("Initialising user information component");
-
     this.userInformationForm = this.fb.group({
       id: ['', Validators.required],
       firstName: ['', Validators.required],

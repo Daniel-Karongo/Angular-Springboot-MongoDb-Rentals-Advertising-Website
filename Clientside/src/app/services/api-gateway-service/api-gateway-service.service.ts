@@ -21,6 +21,13 @@ export class ApiGatewayServiceService {
     return this.password;
   }
 
+  set _emailAddress(emailAddress: any) {
+    this.emailAddress = emailAddress;
+  }
+  set _password(password: any) {
+      this.password = password;
+  }
+
   private baseUrl = environments.apiGatewayBaseUrl;
   private endpoints = environments.apiGatewayResourcesEndpoints;
   

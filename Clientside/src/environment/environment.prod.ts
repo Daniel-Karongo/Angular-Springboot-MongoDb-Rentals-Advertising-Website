@@ -19,6 +19,7 @@ export const environments = {
         registerUser: '/user/register',
         login: '/login',
         loginViaPostman: '/api/login',
-        getUser: '/user'
+        getUser: '/user',
+        getUsers: '/users'
     }
 };

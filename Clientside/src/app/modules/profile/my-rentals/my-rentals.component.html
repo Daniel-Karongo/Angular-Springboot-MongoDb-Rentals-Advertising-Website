@@ -1,11 +1,10 @@
 <div class="my-rentals">
-    <h2>My Rentals</h2>
-    <div class="rental-list">
-      <div *ngFor="let rental of rentals" class="rental-item">
-        <h3>{{ rental.name }}</h3>
-        <p><strong>Location:</strong> {{ rental.location }}</p>
-        <button (click)="viewDetails(rental.id)">View Details</button>
-      </div>
+  <div class="rental-list">
+    <div *ngFor="let rental of rentals" class="rental-item">
+      <h3>{{ rental.rentalId }}</h3>
+      <p><strong>Location:</strong> {{ rental.location }}</p>
+      <button (click)="viewDetails(rental.rentalId)">View Details</button>
     </div>
   </div>
+</div>
   

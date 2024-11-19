@@ -14,7 +14,9 @@ export class PropertiesServiceService {
   private baseUrl = environments.propertiesApiBaseUrl;
   private endpoints = environments.propertiesResourcesEndpoints;
 
-  constructor(private http: HttpClient) { 
+  constructor(
+    private http: HttpClient
+  ) { 
   }
 
   getAllRentals(): Observable<PropertiesDTO[]> {

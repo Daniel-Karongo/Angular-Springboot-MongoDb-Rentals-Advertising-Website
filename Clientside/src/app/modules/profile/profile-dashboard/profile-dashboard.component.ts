@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button'; // For logout button
 import { ApiGatewayServiceService } from '../../../services/api-gateway-service/api-gateway-service.service';
 import { PropertyOwner } from '../../../models/PropertyOwner';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile-dashboard',
@@ -21,7 +22,8 @@ export class ProfileDashboardComponent {
   constructor(
     private router: Router, 
     private activatedRoute: ActivatedRoute,
-    private apiGatewayService: ApiGatewayServiceService
+    private apiGatewayService: ApiGatewayServiceService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +51,14 @@ export class ProfileDashboardComponent {
 
   // Logout function (for now, just console log)
   logout(): void {
-    console.log('User logged out');
-    // Add actual logout logic here, like clearing tokens, redirecting to login, etc.
+    localStorage.removeItem('authToken');
+    this.apiGatewayService._emailAddress=null;
+    this.apiGatewayService._password=null;
+    this.snackBar.open('Logout successful!', 'X', {
+      duration: 6000, // Snackbar will auto-close after 3 seconds
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+    this.router.navigateByUrl('');
   }
 }
