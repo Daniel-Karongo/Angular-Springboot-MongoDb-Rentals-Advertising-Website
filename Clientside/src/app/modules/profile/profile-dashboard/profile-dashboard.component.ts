@@ -35,6 +35,7 @@ export class ProfileDashboardComponent {
       (data) => {
         this.user = data;
         this.username = this.user.firstName;
+        this.apiGatewayService._user = data;
       },
       (error) => {
         console.error('Error fetching user data in', error);

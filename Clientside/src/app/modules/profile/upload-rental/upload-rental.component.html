@@ -1,0 +1,228 @@
+<div class="upload-rental-container">
+    <p class="component-name">Upload Rental</p>
+    <form [formGroup]="uploadRentalForm" (ngSubmit)="onSubmit()" class="uploadRentalForm" enctype="multipart/form-data">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="Basic Information">
+                
+                <div class="basic-information" formArrayName="basicInformation" *ngFor="let basicInfoGroup of basicInformation.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Plot Summary Description</mat-label>
+                            <input matInput type="text" formControlName="plotSummaryDescription" placeholder="Enter summary description" />
+                            <mat-error *ngIf="uploadRentalForm.get('plotSummaryDescription')?.invalid">
+                                {{ errorMessage('plotSummaryDescription') }}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Plot Detailed Description</mat-label>
+                            <textarea matInput formControlName="plotDetailedDescription" placeholder="Enter detailed description"></textarea>
+                            <mat-error *ngIf="uploadRentalForm.get('plotDetailedDescription')?.invalid">
+                                {{ errorMessage('plotDetailedDescription') }}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Location</mat-label>
+                            <input matInput formControlName="location" placeholder="Enter location" />
+                            <mat-error *ngIf="uploadRentalForm.get('location')?.invalid">
+                                {{ errorMessage('location') }}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Amount</mat-label>
+                            <input matInput type="number" formControlName="amount" placeholder="Enter amount" />
+                            <mat-error *ngIf="uploadRentalForm.get('amount')?.invalid">
+                                {{ errorMessage('amount') }}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Term</mat-label>
+                            <input matInput formControlName="term" placeholder="Enter term" />
+                            <mat-error *ngIf="uploadRentalForm.get('term')?.invalid">
+                                {{ errorMessage('term') }}
+                            </mat-error>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Type</mat-label>
+                            <input matInput formControlName="type" placeholder="Enter type" />
+                            <mat-error *ngIf="uploadRentalForm.get('type')?.invalid">
+                                {{ errorMessage('type') }}
+                            </mat-error>
+                        </mat-form-field>
+                        
+                        <div class="file-upload-container">
+                            <mat-label>Photographs</mat-label>
+                            <input 
+                              type="file"
+                              formControlName="photographs" 
+                              placeholder="Upload photographs" 
+                              accept="image/*"
+                              (change)="onFilesSelected($event)"
+                              multiple
+                            />
+
+                            <mat-error *ngIf="uploadRentalForm.get('photographs')?.invalid">
+                                {{ errorMessage('photographs') }}
+                            </mat-error>
+                        </div>
+                        
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab class="optional-information" label="Optional Information">
+                <div formArrayName="optionalInformation" *ngFor="let optionalInfoGroup of optionalInformation.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <!-- Amenities Section -->
+                        <h3>Amenities</h3>
+                        <div formArrayName="ammenities" *ngFor="let amenityGroup of getAmenities(i).controls; let j = index">
+                            <div [formGroupName]="j">
+                                <div class="electricity">
+                                    <p>electricity</p>
+                                    <mat-checkbox formControlName="cleanWater">Clean Water</mat-checkbox>
+                                    <mat-checkbox formControlName="individualToken">Individual Token</mat-checkbox>
+                                    <mat-checkbox formControlName="sharedMeter">Shared Meter</mat-checkbox>
+                                </div>
+                                <div class="security">
+                                    <p>Security</p>
+                                    <mat-checkbox formControlName="securityGuard">Security Guard</mat-checkbox>
+                                    <mat-checkbox formControlName="cctv">CCTV</mat-checkbox>
+                                    <mat-checkbox formControlName="securityLights">Security Lights</mat-checkbox>
+                                </div>
+                                <div class="toilets">
+                                    <p>Toilets</p>
+                                    <mat-checkbox formControlName="communalPitLatrine">Communal Pit Latrine</mat-checkbox>
+                                    <mat-checkbox formControlName="communalAutomaticToilets">Communal Automatic Toilets</mat-checkbox>
+                                </div>
+                                <div class="cleaning">
+                                    <p>Cleaning</p>
+                                    <mat-checkbox formControlName="garbageCollection">Garbage Collection</mat-checkbox>
+                                    <mat-checkbox formControlName="cleaner">Cleaner</mat-checkbox>
+                                    <mat-checkbox formControlName="sink">Sink</mat-checkbox>
+                                </div>
+                                <div class="accessibility">
+                                    <p>Accessibility</p>
+                                    <mat-checkbox formControlName="handicapAccess">Handicap Access</mat-checkbox>
+                                    <mat-checkbox formControlName="packing">Packing</mat-checkbox>
+                                </div>
+                                <div class="finishing">
+                                    <p>Finishing</p>
+                                    <mat-checkbox formControlName="tiles">Tiles</mat-checkbox>
+                                    <mat-checkbox formControlName="ceiling">Ceiling</mat-checkbox>
+                                    <mat-checkbox formControlName="balcony">Balcony</mat-checkbox>
+                                </div>
+                                <div class="luxury">
+                                    <p>Luxury</p>
+                                    <mat-checkbox formControlName="wifi">Wi-Fi</mat-checkbox>
+                                    <mat-checkbox formControlName="jointTvSubscription">Joint TV Subscription</mat-checkbox>
+                                    <mat-checkbox formControlName="airConditioning">Air Conditioning</mat-checkbox>
+                                    <mat-checkbox formControlName="furnished">Furnished</mat-checkbox>
+                                    <mat-checkbox formControlName="swimmingPool">Swimming Pool</mat-checkbox>
+                                    <mat-checkbox formControlName="gym">Gym</mat-checkbox>
+                                </div>
+
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Others</mat-label>
+                                    <input matInput formControlName="others" placeholder="Specify other amenities" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <!-- Tenant Preferences Section -->
+                        <h3>Preferred sort of tenants</h3>
+                        <div formArrayName="tenantPreferences" *ngFor="let preferenceGroup of getPreferences(i).controls; let j = index">
+                            <div [formGroupName]="j">
+                                <div class="gender">
+                                    <p>Gender</p>
+                                    <mat-radio-group class="pull-right" aria-label="Select an option" formControlName="gender">
+                                        <mat-radio-button color="primary" value="Male">Male</mat-radio-button>
+                                        <mat-radio-button color="primary" value="Female">Female</mat-radio-button>
+                                        <mat-radio-button color="primary" value="Any Gender">Any gender</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="students">
+                                    <p>Students</p>
+                                    <mat-radio-group class="pull-right" aria-label="Select an option" formControlName="students">
+                                        <mat-radio-button color="primary" value="Students only">Students only</mat-radio-button>
+                                        <mat-radio-button color="primary" value="Students allowed">Students allowed</mat-radio-button>
+                                        <mat-radio-button color="primary" value="No students allowed">No students allowed</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="families">
+                                    <p>Families</p>
+                                    <mat-radio-group class="pull-right" aria-label="Select an option" formControlName="families">
+                                        <mat-radio-button color="primary" value="Any family setup allowed">Any family setup allowed</mat-radio-button>
+                                        <mat-radio-button color="primary" value="No small children allowed">No small children allowed</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="vehicles">
+                                    <p>Vehicles</p>
+                                    <mat-radio-group class="pull-right" aria-label="Select an option" formControlName="driving">
+                                        <mat-radio-button color="primary" value="Vehicles allowed">Vehicles allowed</mat-radio-button>
+                                        <mat-radio-button color="primary" value="No vehicles allowed">No vehicles allowed</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                
+                                <div class="religion">
+                                    <p>Religion</p>
+                                    <mat-radio-group
+                                        aria-label="Select an option"
+                                        (change)="onReligionOptionChange($event)"
+                                        >
+                                        <mat-radio-button color="primary" value="any religion">
+                                            People of any/all religions allowed
+                                        </mat-radio-button>
+                                        <mat-radio-button color="primary" value="specific religions">
+                                            Only some religions allowed
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                  
+                                    <!-- Conditionally show checkboxes when 'specific religions' is selected -->
+                                    <div *ngIf="isSpecificReligionSelected" formGroupName="religions">
+                                        <p>Select Allowed Religions:</p>
+                                      
+                                        <div *ngFor="let religion of religions">
+                                          <!-- If the religion is "Any religion", create a hidden input -->
+                                          <ng-container *ngIf="religion === 'Any religion'">
+                                            <input type="hidden" formControlName="anyReligion" value="Any religion" />
+                                          </ng-container>
+                                      
+                                          <!-- If the religion is not "Any religion", create a mat-checkbox -->
+                                          <ng-container *ngIf="religion !== 'Any religion'">
+                                            <mat-checkbox [formControlName]="religion">
+                                              {{ religion }}
+                                            </mat-checkbox>
+                                          </ng-container>
+                                        </div>
+                                      </div>
+                                      
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Rules</mat-label>
+                            <textarea matInput formControlName="rules" placeholder="Enter rules"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+        <!-- Submit Button -->
+        <div class="submit-button">
+            <button 
+                type="submit"
+                class="mdc-fab mdc-fab--extended"
+                
+>
+                <span class="mdc-fab__label">Upload Rental</span>
+            </button>
+            <!-- [disabled]="uploadRentalForm.invalid" -->
+        </div>
+    </form>
+</div>

@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid'; // Import the UUID function
 export class ApiGatewayServiceService {
   private emailAddress!: string;
   private password!: string;
+  private user!: PropertyOwner;
 
   get _emailAddress(): string {
     return this.emailAddress;
@@ -21,12 +22,20 @@ export class ApiGatewayServiceService {
     return this.password;
   }
 
+  get _user(): PropertyOwner {
+    return this.user;
+  }
+
   set _emailAddress(emailAddress: any) {
     this.emailAddress = emailAddress;
   }
   set _password(password: any) {
       this.password = password;
   }
+  set _user(user: PropertyOwner) {
+    this.user = user;
+}
+
 
   private baseUrl = environments.apiGatewayBaseUrl;
   private endpoints = environments.apiGatewayResourcesEndpoints;
@@ -126,7 +135,7 @@ export class ApiGatewayServiceService {
     );
   }
 
-  getUser(): Observable<any> {
+  getUser(): Observable<PropertyOwner> {
     // const emailAddress = localStorage.getItem('emailAddress');
     const emailAddress = this.emailAddress;
 
@@ -138,7 +147,9 @@ export class ApiGatewayServiceService {
 
     return this.http.request(request).pipe(
       filter(event => event.type === HttpEventType.Response),  // Filter only the final response
-      map((event: any) => event.body)                          // Extract the response body
+      map((event: any) => {
+          return event.body as PropertyOwner
+      })                          // Extract the response body
     );
   }
 

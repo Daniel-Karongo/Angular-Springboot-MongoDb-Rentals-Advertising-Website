@@ -3,9 +3,10 @@ package com.housesearchKE.properties_service.model;
 import com.mongodb.lang.Nullable;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "properties")
+import java.io.File;
+import java.util.List;
+
 @Data
 public class Property {
     @Id
@@ -14,7 +15,7 @@ public class Property {
     private String propertyOwnerId;
     private String plotSummaryDescription;
     private String plotDetailedDescription;
-    private String[] photoUrls;
+    private List<File> photographs;
     private String term;
     private int amount;
     private String[] tenantPreferences;
@@ -24,4 +25,5 @@ public class Property {
     private String location;
     private String[] ammenities;
     private double rating;
+    private String rules;
 }

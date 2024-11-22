@@ -6,6 +6,7 @@ export const environments = {
         getRental: '/property/',
         saveRental: '/property',
         searchRentals: '/properties/',
+        deleteRental: '/property/'
     },
     ownersApiBaseUrl: 'http://localhost:9002/owners',
     ownersResourcesEndpoints: {

@@ -1,119 +1,129 @@
 export class Property {
-    #rentalId!: string;
-    #propertyOwnerId!: string;
-    #plotSummaryDescription!: string;
-    #plotDetailedDescription!: string;
-    #photoUrls!: string[];
-    #term!: string;
-    #amount!: number;
-    #tenantPreferences!: string[];
-    #numberOfOccupants!: number;
-    #type!: string;
-    #location!: string;
-    #amenities!: string[];
-    #rating!: number;
+    private rentalId!: string;
+    private propertyOwnerId!: string;
+    private plotSummaryDescription!: string;
+    private plotDetailedDescription!: string;
+    private photographs!: File[];  // Changed from string[] to File[]
+    private term!: string;
+    private amount!: number;
+    private tenantPreferences!: string[];
+    private numberOfOccupants!: number;
+    private type!: string;
+    private location!: string;
+    private amenities!: string[];
+    private rating!: number;
 
     constructor(
-        propertyOwnerId: string, term: string, plotSummaryDescription: string, plotDetailedDescription: string, photoUrls: string[], amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number
+        term: string, plotSummaryDescription: string, plotDetailedDescription: string, photographs: File[], amount: number, tenantPreferences: string[], type: string, location: string, amenities: string[], propertyOwnerId?: string, numberOfOccupants?: number, rating?: number
     ) {
-        this.#propertyOwnerId = propertyOwnerId;
-        this.#plotSummaryDescription = plotSummaryDescription;
-        this.#plotDetailedDescription = plotDetailedDescription;
-        this.#photoUrls = photoUrls;
-        this.#term = term;
-        this.#amount = amount;
-        this.#tenantPreferences = tenantPreferences;
-        this.#numberOfOccupants = numberOfOccupants;
-        this.#type = type;
-        this.#location = location;
-        this.#amenities = amenities;
-        this.#rating = rating;
+        if(propertyOwnerId) {
+            this.propertyOwnerId = propertyOwnerId;
+        }
+        if(numberOfOccupants) {
+            this.numberOfOccupants = numberOfOccupants;
+        }
+        if(rating) {
+            this.rating = rating;
+        }
+        this.plotSummaryDescription = plotSummaryDescription;
+        this.plotDetailedDescription = plotDetailedDescription;
+        this.photographs = photographs;
+        this.term = term;
+        this.amount = amount;
+        this.tenantPreferences = tenantPreferences;
+        this.type = type;
+        this.location = location;
+        this.amenities = amenities;
     }
 
     // Getters
-    get rentalId(): string {
-        return this.#rentalId;
+    get _rentalId(): string {
+        return this.rentalId;
     }
-    get propertyOwnerId(): string {
-        return this.#propertyOwnerId;
+    get _propertyOwnerId(): string {
+        return this.propertyOwnerId;
     }
-    get plotSummaryDescription(): string {
-        return this.#plotSummaryDescription;
+    get _plotSummaryDescription(): string {
+        return this.plotSummaryDescription;
     }
-    get plotDetailedDescription(): string {
-        return this.#plotDetailedDescription;
+    get _plotDetailedDescription(): string {
+        return this.plotDetailedDescription;
     }
-    get photoUrls(): string[] {
-        return this.#photoUrls;
+    get _photographs(): File[] {  // Changed to return File[] 
+        return this.photographs;
     }
-    get term(): string {
-        return this.#term;
+    get _term(): string {
+        return this.term;
     }
-    get amount(): number {
-        return this.#amount;
+    get _amount(): number {
+        return this.amount;
     }
-    get tenantPreferences(): string[] {
-        return this.#tenantPreferences;
+    get _tenantPreferences(): string[] {
+        return this.tenantPreferences;
     }
-    get numberOfOccupants(): number {
-        return this.#numberOfOccupants;
+    get _numberOfOccupants(): number {
+        return this.numberOfOccupants;
     }
-    get type():  string {
-        return this.#type;
+    get _type():  string {
+        return this.type;
     }
-    get location(): string {
-        return this.#location;
+    get _location(): string {
+        return this.location;
     }
-    get amenities(): string[] {
-        return this.#amenities;
+    get _amenities(): string[] {
+        return this.amenities;
     }
-    get rating(): number {
-        return this.#rating;
+    get _rating(): number {
+        return this.rating;
     }
-
 
     // Setters
-    set rentalId(rentalId: string) {
-        this.#rentalId = rentalId;
+    set _rentalId(rentalId: string) {
+        this.rentalId = rentalId;
     }
-    set propertyOwnerId(propertyOwnerId: string) {
-        this.#propertyOwnerId = propertyOwnerId;
+    set _propertyOwnerId(propertyOwnerId: string) {
+        this.propertyOwnerId = propertyOwnerId;
     }
-    set plotSummaryDescription(plotSummaryDescription: string) {
-        this.#plotSummaryDescription = plotSummaryDescription;
+    set _plotSummaryDescription(plotSummaryDescription: string) {
+        this.plotSummaryDescription = plotSummaryDescription;
     }
-    set plotDetailedDescription(plotDetailedDescription: string) {
-        this.#plotDetailedDescription = plotDetailedDescription;
+    set _plotDetailedDescription(plotDetailedDescription: string) {
+        this.plotDetailedDescription = plotDetailedDescription;
     }
-    set photoUrls(photoUrls: string[]) {
-        this.#photoUrls = photoUrls;
+    set _photographs(photographs: File[]) {  // set _the photographs as an array of File objects
+        this.photographs = photographs;
     }
-    set term(term: string) {
-        this.#term = term;
+    set _term(term: string) {
+        this.term = term;
     }
-    set amount(amount: number) {
-        this.#amount = amount;
+    set _amount(amount: number) {
+        this.amount = amount;
     }
-    set tenantPreferences(tenantPreferences: string[]) {
-        this.#tenantPreferences = tenantPreferences;
+    set _tenantPreferences(tenantPreferences: string[]) {
+        this.tenantPreferences = tenantPreferences;
     }
-    set numberOfOccupants(numberOfOccupants: number) {
-        this.#numberOfOccupants = numberOfOccupants;
+    set _numberOfOccupants(numberOfOccupants: number) {
+        this.numberOfOccupants = numberOfOccupants;
     }
-    set type(type:  string) {
-        this.#type = type;
+    set _type(type:  string) {
+        this.type = type;
     }
-    set location(location: string) {
-        this.#location = location;
+    set _location(location: string) {
+        this.location = location;
     }
-    set amenities(amenities: string[]) {
-        this.#amenities = amenities;
+    set _amenities(amenities: string[]) {
+        this.amenities = amenities;
     }
-    set rating(rating: number) {
-        this.#rating = rating;
+    set _rating(rating: number) {
+        this.rating = rating;
     }
 
     toString(): string {
-        return `Property [rentalId=${this.#rentalId}, propertyOwnerId=${this.#propertyOwnerId}, plotSummaryDescription=${this.#plotSummaryDescription}, plotDetailedDescription=${this.#plotDetailedDescription}, photoUrls=${this.#photoUrls.join(', ')}, term=${this.#term}, amount=${this.#amount}, tenantPreferences=${this.#tenantPreferences.join(', ')}, numberOfOccupants=${this.#numberOfOccupants}, type=${this.#type}, location=${this.#location}, amenities=${this.#amenities.join(', ')}, rating=${this.#rating}]`;
+        // Ensure photographs is an array before calling .map
+        const photographNames = Array.isArray(this.photographs)
+        ? this.photographs.map(file => file.name).join(', ') 
+        : 'No photographs available';  // Handle case if it's not an array
+
+        return `Property [rentalId=${this.rentalId}, propertyOwnerId=${this.propertyOwnerId}, plotSummaryDescription=${this.plotSummaryDescription}, plotDetailedDescription=${this.plotDetailedDescription}, photographs=${photographNames}, term=${this.term}, amount=${this.amount}, tenantPreferences=${this.tenantPreferences.join(', ')}, numberOfOccupants=${this.numberOfOccupants}, type=${this.type}, location=${this.location}, amenities=${this.amenities.join(', ')}, rating=${this.rating}]`;
     }
 }

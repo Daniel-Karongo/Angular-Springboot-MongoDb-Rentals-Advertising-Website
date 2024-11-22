@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import com.housesearchKE.properties_service.dto.PropertiesDTO;
 import com.housesearchKE.properties_service.model.Property;
+import com.housesearchKE.properties_service.model.PropertyEntity;
 import com.mongodb.client.MongoClient;
 import org.bson.Document;
 import com.mongodb.client.MongoCollection;
@@ -26,8 +27,8 @@ public class SearchRepositoryImplementation implements SearchRepository {
     private MongoConverter converter;
 
     @Override
-    public List<Property> findByText(String text) {
-        List<Property> properties = new ArrayList<>();
+    public List<PropertyEntity> findByText(String text) {
+        List<PropertyEntity> properties = new ArrayList<>();
         MongoDatabase database = client.getDatabase("housesearchke");
         MongoCollection<Document> collection = database.getCollection("properties");
 
@@ -52,7 +53,7 @@ public class SearchRepositoryImplementation implements SearchRepository {
                 new Document("$sort", new Document("rating", -1L))  // To sort by rating in descending order
         ));
 
-        result.forEach(doc -> properties.add(converter.read(Property.class, doc)));
+        result.forEach(doc -> properties.add(converter.read(PropertyEntity.class, doc)));
 
         return properties;
     }

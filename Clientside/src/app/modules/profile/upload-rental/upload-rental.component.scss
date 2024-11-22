@@ -1,0 +1,63 @@
+.upload-rental-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.component-name {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(1, 135, 134);
+}
+
+.uploadRentalForm {
+    padding: 20px;
+}
+
+.basic-information {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.file-upload-container {
+    margin: 10px;
+}
+
+.file-upload-container input {
+    margin-left: 10px;
+    border: 2px solid rgb(1, 135, 134);
+    padding: 5px;
+}
+
+
+button:hover {
+    opacity: 0.8;
+}
+  
+button.mdc-fab {
+    color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 16px;
+    // font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+}
+  
+button.mdc-fab:hover {
+    transform: translateY(-10px);
+}
+
+button.mdc-fab:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}

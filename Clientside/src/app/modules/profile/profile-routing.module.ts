@@ -4,6 +4,7 @@ import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard
 import { MyRentalsComponent } from './my-rentals/my-rentals.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { IndividualRentalComponentComponent } from './individual-rental-component/individual-rental-component.component';
+import { UploadRentalComponent } from './upload-rental/upload-rental.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       { path: 'user-information', component: UserInformationComponent },
       { path: 'rentals', component: MyRentalsComponent },
-      { path: 'rental/:id', component: IndividualRentalComponentComponent }
+      { path: 'rental/upload', component: UploadRentalComponent },
+      { path: 'rental/:id', component: IndividualRentalComponentComponent },
     ]
   }
 ];

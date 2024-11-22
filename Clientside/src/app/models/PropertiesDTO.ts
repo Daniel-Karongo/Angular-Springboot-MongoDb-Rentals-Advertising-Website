@@ -5,7 +5,7 @@ export class PropertiesDTO {
     #propertyOwner!: PropertyOwner;
     #plotSummaryDescription!: string;
     #plotDetailedDescription!: string;
-    #photoUrls!: string[];
+    #photographs!: string[];
     #term!: string;
     #amount!: number;
     #tenantPreferences!: string[];
@@ -16,12 +16,12 @@ export class PropertiesDTO {
     #rating!: number;
 
     constructor(
-        propertyOwner: PropertyOwner, plotSummaryDescription: string, plotDetailedDescription: string, photoUrls: string[], term: string, amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number
+        propertyOwner: PropertyOwner, plotSummaryDescription: string, plotDetailedDescription: string, photographs: string[], term: string, amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number
     ) {
         this.#propertyOwner = propertyOwner;
         this.#plotSummaryDescription = plotSummaryDescription;
         this.#plotDetailedDescription = plotDetailedDescription;
-        this.#photoUrls = photoUrls;
+        this.#photographs = photographs;
         this.#term = term;
         this.#amount = amount;
         this.#tenantPreferences = tenantPreferences;
@@ -45,8 +45,8 @@ export class PropertiesDTO {
     get plotDetailedDescription(): string {
         return this.#plotDetailedDescription;
     }
-    get photoUrls(): string[] {
-        return this.#photoUrls;
+    get photographs(): string[] {
+        return this.#photographs;
     }
     get term(): string {
         return this.#term;
@@ -87,8 +87,8 @@ export class PropertiesDTO {
     set plotDetailedDescription(plotDetailedDescription: string) {
         this.#plotDetailedDescription = plotDetailedDescription;
     }
-    set photoUrls(photoUrls: string[]) {
-        this.#photoUrls = photoUrls;
+    set photographs(photographs: string[]) {
+        this.#photographs = photographs;
     }
     set term(term: string) {
         this.#term = term;
@@ -115,7 +115,7 @@ export class PropertiesDTO {
         this.#rating = rating;
     }
 
-    toString(): string {
-        return `Property [rentalId=${this.#rentalId}, propertyOwner=${this.#propertyOwner}, plotSummaryDescription=${this.#plotSummaryDescription}, plotDetailedDescription=${this.#plotDetailedDescription}, photoUrls=${this.#photoUrls.join(', ')}, term=${this.#term}, amount=${this.#amount}, tenantPreferences=${this.#tenantPreferences.join(', ')}, numberOfOccupants=${this.#numberOfOccupants}, type=${this.#type}, location=${this.#location}, amenities=${this.#amenities.join(', ')}, rating=${this.#rating}]`;
-    }
+    // toString(): string {
+    //     return `Property [rentalId=${this.#rentalId}, propertyOwner=${this.#propertyOwner}, plotSummaryDescription=${this.#plotSummaryDescription}, plotDetailedDescription=${this.#plotDetailedDescription}, photographs=${this.#photographs.join(', ')}, term=${this.#term}, amount=${this.#amount}, tenantPreferences=${this.#tenantPreferences.join(', ')}, numberOfOccupants=${this.#numberOfOccupants}, type=${this.#type}, location=${this.#location}, amenities=${this.#amenities.join(', ')}, rating=${this.#rating}]`;
+    // }
 }

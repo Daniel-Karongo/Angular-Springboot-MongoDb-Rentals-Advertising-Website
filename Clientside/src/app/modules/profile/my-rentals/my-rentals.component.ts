@@ -7,6 +7,8 @@ import { ApiGatewayServiceService } from '../../../services/api-gateway-service/
 import { PropertiesDTO } from '../../../models/PropertiesDTO';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { PropertiesServiceService } from '../../../services/properties-service/properties-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-my-rentals',
@@ -22,9 +24,11 @@ export class MyRentalsComponent {
 
   constructor(
     private propertyOwnersService: PropertyOwnersServiceService,
+    private propertiesService: PropertiesServiceService,
     private apiGatewayService: ApiGatewayServiceService,
     private route: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
 
   }
@@ -68,9 +72,29 @@ export class MyRentalsComponent {
 
   deleteRental(rentalId: string) {
     console.log(rentalId);
+    this.propertiesService.deleteRental(rentalId).subscribe(
+      (data) => {
+        if (data.includes('Rental Deleted')) {
+          this.snackBar.open('Rental deleted successfully', 'X', {
+            duration: 6000, // Snackbar will auto-close after 3 seconds
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+          this.ngOnInit();
+        }
+      },
+      (error) => {
+        console.error('Error deleting rental', error);
+        this.snackBar.open('There was an error deleting the rental. Please try again later.', 'X', {
+          duration: 6000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
+    );
   }
 
   uploadRental() {
-    console.log("Uploading rental");
+    this.route.navigate(['rental/upload'], {relativeTo: this.activatedRoute.parent});
   }
 }

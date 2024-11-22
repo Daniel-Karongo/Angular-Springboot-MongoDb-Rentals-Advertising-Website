@@ -1,6 +1,6 @@
-<div class="my-rentals" [ngClass]="rentals?.length==0 ? 'yet-to-upload' : ''">
+<div class="my-rentals" [ngClass]="rentals.length==0 ? 'yet-to-upload' : ''">
   <div *ngIf="rentals?.length==0" class="no-rentals">
-    <p> You are yet to upload any rentals. </p>
+    <p> You have no rentals in your name. </p>
   </div>
   <div class="upload-rentals">
     <button
@@ -13,6 +13,9 @@
         </button>
   </div>
   <div *ngIf="rentals.length>0" class="rental-list">
+    <div class="rentals-count">
+      Rentals: {{ rentals.length }}
+    </div>
     <a 
       (click)="showRentalInDetail(rental.rentalId)" 
       *ngFor="let rental of rentals; let i = index" 
@@ -20,9 +23,10 @@
     >
       <div class="image-container">
         <img 
-        [src]="rental.photoUrls?.[0] || 'https://i.roamcdn.net/prop/brk/listing-thumb-400w/8d4c32836a1867d06c017d610439623c/-/prod-property-core-backend-media-brk/7237636/02f1752a-35ea-4eab-8e79-bc8c0b4a2d85.jpg'" 
-        alt="Rental Image" 
-      />
+          [src]="rental?.photographs?.[0] ? 'http://localhost:8080/' + rental.photographs[0].split('\\').pop() : 'https://i.roamcdn.net/prop/brk/listing-thumb-400w/8d4c32836a1867d06c017d610439623c/-/prod-property-core-backend-media-brk/7237636/02f1752a-35ea-4eab-8e79-bc8c0b4a2d85.jpg'" 
+          alt="Rental Image" 
+        />
+
       </div>
       <div class="rental-details">
         <p class="plotSummaryDescription">{{rental.plotSummaryDescription}}</p>
@@ -31,7 +35,7 @@
         <p class="amount"><span class="currency-label">Ksh</span> {{ rental.amount}} / {{ rental.term }}</p>
         <button
           class="mdc-fab mdc-fab--extended"
-          (click)="viewDetails(rental.rentalId)"
+          (click)="viewDetails(rental.rentalId); $event.stopPropagation()"
         >
           <div class="mdc-fab__ripple"></div>
           <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
@@ -39,7 +43,7 @@
         </button>
         <button
           class="mdc-fab mdc-fab--extended"
-          (click)="deleteRental(rental.rentalId)"
+          (click)="deleteRental(rental.rentalId); $event.stopPropagation()"
         >
           <div class="mdc-fab__ripple"></div>
           <mat-icon aria-hidden="false" aria-label="Example delete icon" fontIcon="delete"></mat-icon>
@@ -49,5 +53,3 @@
     </a>  
   </div>
 </div>
-
-  
