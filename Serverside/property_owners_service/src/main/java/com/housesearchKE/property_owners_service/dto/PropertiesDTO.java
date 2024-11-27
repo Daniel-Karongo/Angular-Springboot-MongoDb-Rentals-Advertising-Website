@@ -23,7 +23,7 @@ public class PropertiesDTO {
     private Integer numberOfOccupants;
     private String type;
     private String location;
-    private String[] ammenities;
+    private String[] amenities;
     private double rating;
     private String rules;
 }

@@ -12,9 +12,10 @@ export class Property {
     private location!: string;
     private amenities!: string[];
     private rating!: number;
+    private rules!: string;
 
     constructor(
-        term: string, plotSummaryDescription: string, plotDetailedDescription: string, photographs: File[], amount: number, tenantPreferences: string[], type: string, location: string, amenities: string[], propertyOwnerId?: string, numberOfOccupants?: number, rating?: number
+        term: string, plotSummaryDescription: string, plotDetailedDescription: string, photographs: File[], amount: number, tenantPreferences: string[], type: string, location: string, amenities: string[], rules: string, propertyOwnerId?: string, numberOfOccupants?: number, rating?: number
     ) {
         if(propertyOwnerId) {
             this.propertyOwnerId = propertyOwnerId;
@@ -34,6 +35,7 @@ export class Property {
         this.type = type;
         this.location = location;
         this.amenities = amenities;
+        this.rules = rules;
     }
 
     // Getters
@@ -76,6 +78,9 @@ export class Property {
     get _rating(): number {
         return this.rating;
     }
+    get _rules(): string {
+        return this.rules;
+    }
 
     // Setters
     set _rentalId(rentalId: string) {
@@ -117,6 +122,9 @@ export class Property {
     set _rating(rating: number) {
         this.rating = rating;
     }
+    set _rules(rules: string) {
+        this.rules = rules;
+    }
 
     toString(): string {
         // Ensure photographs is an array before calling .map
@@ -124,6 +132,6 @@ export class Property {
         ? this.photographs.map(file => file.name).join(', ') 
         : 'No photographs available';  // Handle case if it's not an array
 
-        return `Property [rentalId=${this.rentalId}, propertyOwnerId=${this.propertyOwnerId}, plotSummaryDescription=${this.plotSummaryDescription}, plotDetailedDescription=${this.plotDetailedDescription}, photographs=${photographNames}, term=${this.term}, amount=${this.amount}, tenantPreferences=${this.tenantPreferences.join(', ')}, numberOfOccupants=${this.numberOfOccupants}, type=${this.type}, location=${this.location}, amenities=${this.amenities.join(', ')}, rating=${this.rating}]`;
+        return `Property [rentalId=${this.rentalId}, propertyOwnerId=${this.propertyOwnerId}, plotSummaryDescription=${this.plotSummaryDescription}, plotDetailedDescription=${this.plotDetailedDescription}, photographs=${photographNames}, term=${this.term}, amount=${this.amount}, tenantPreferences=${this.tenantPreferences.join(', ')}, numberOfOccupants=${this.numberOfOccupants}, type=${this.type}, location=${this.location}, amenities=${this.amenities.join(', ')}, rating=${this.rating}, rules=${this.rules}]`;
     }
 }

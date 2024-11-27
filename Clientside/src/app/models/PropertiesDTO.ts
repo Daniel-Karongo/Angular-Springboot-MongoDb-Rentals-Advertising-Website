@@ -14,9 +14,10 @@ export class PropertiesDTO {
     #location!: string;
     #amenities!: string[];
     #rating!: number;
+    #rules!: string;
 
     constructor(
-        propertyOwner: PropertyOwner, plotSummaryDescription: string, plotDetailedDescription: string, photographs: string[], term: string, amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number
+        propertyOwner: PropertyOwner, plotSummaryDescription: string, plotDetailedDescription: string, photographs: string[], term: string, amount: number, tenantPreferences: string[], numberOfOccupants: number, type: string, location: string, amenities: string[], rating: number, rules: string
     ) {
         this.#propertyOwner = propertyOwner;
         this.#plotSummaryDescription = plotSummaryDescription;
@@ -30,6 +31,7 @@ export class PropertiesDTO {
         this.#location = location;
         this.#amenities = amenities;
         this.#rating = rating;
+        this.#rules = rules;
     }
 
     // Getters
@@ -72,6 +74,9 @@ export class PropertiesDTO {
     get rating(): number {
         return this.#rating;
     }
+    get rules(): string {
+        return this.#rules;
+    }
 
 
     // Setters
@@ -113,6 +118,9 @@ export class PropertiesDTO {
     }
     set rating(rating: number) {
         this.#rating = rating;
+    }
+    set rules(rules: string) {
+        this.#rules = rules;
     }
 
     // toString(): string {

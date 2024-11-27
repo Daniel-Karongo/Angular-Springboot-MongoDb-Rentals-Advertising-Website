@@ -1,0 +1,101 @@
+.rentals {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  min-width: 97vw;
+  max-width: 97vw;
+}
+
+.yet-to-upload {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-rentals button {
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.upload-rentals button mat-icon {
+  margin-right: 8px;
+}
+
+.rental-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rentals-count {
+  align-self: center;
+  font-weight: 500;
+  font-size: 20px;
+}
+  
+.rental-item {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border: 2px solid transparent; /* Default border */
+  transition: transform 0.3s ease, border-color 0.3s ease, border-width 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rental-item:hover {
+    transform: translateY(-10px) scale(1.005); /* Move up and scale */
+    border-color: rgb(1, 135, 134); /* Border color on hover */
+    border-width: 3px; /* Increase border thickness */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
+}
+
+.image-container {
+  flex-basis: 30%;
+  overflow: hidden; /* Ensures the image doesn't overflow outside the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%; /* Ensures image fills the container width */
+  height: 100%; /* Ensures image fills the container height */
+  object-fit: cover; /* Maintains aspect ratio and ensures no image overflow */
+}
+  
+.rental-details {
+  padding-left: 20px;
+  flex-basis: 70%;
+}
+  
+.plotSummaryDescription {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.location-label, .currency-label {
+  font-weight: 500;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button.mdc-fab {
+  color: #fff;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 16px;
+  // font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 10px;
+}
+
+button.mdc-fab:hover {
+  transform: translateY(-10px);
+}

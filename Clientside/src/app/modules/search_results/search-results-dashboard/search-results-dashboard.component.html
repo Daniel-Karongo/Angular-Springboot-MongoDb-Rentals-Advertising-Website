@@ -1,0 +1,29 @@
+<div class="nav-bar">
+    <form [formGroup]="searchForm" (ngSubmit)="searchRentals()">
+        <mat-form-field appearance="outline" class="example-full-width">
+            <input matInput placeholder="Ex. Nairobi" type="text" formControlName="criteria" required>
+
+            <!-- Search Button inside the mat-form-field -->
+            <button
+                mat-icon-button
+                class="search-button"
+                [disabled]="searchForm.invalid"
+                matSuffix
+            >
+                <span class="material-icons">search</span>
+            </button>
+        </mat-form-field>
+    </form>
+
+    <!-- Advertise Button -->
+    <button
+        (click)="loginPageInitialiser()"
+        class="mdc-fab mdc-fab--extended advertise-button"
+    >
+        <div class="mdc-fab__ripple"></div>
+        <span class="mdc-fab__label">Advertise</span>
+    </button>
+</div>
+
+<!-- Search Results Component -->
+<app-search-results></app-search-results>

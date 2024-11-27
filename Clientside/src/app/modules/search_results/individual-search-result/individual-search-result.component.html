@@ -1,0 +1,35 @@
+<div class="individual-rental-container">
+    <div class="rental-images">
+        <ng-image-slider *ngIf="rental.photographs && rental.photographs.length>0" [images]="imageObject" #nav></ng-image-slider>
+    </div>
+    <div class="basic-rental-details">
+        <h1>{{rental.plotSummaryDescription}}</h1>
+        <p><span class="attribute">Description </span>{{rental.plotDetailedDescription}}</p>
+        <p><span class="attribute">Location </span>{{rental.location}}</p>
+        <p><span class="attribute">Amount </span>{{rental.amount}}</p>
+        <p><span class="attribute">Term </span>{{rental.term}}</p>
+        <p><span class="attribute">Type </span>{{rental.type}}</p>
+    </div>    
+    <div class="extra-rental-details" *ngIf="rental.amenities.length>0 || rental.tenantPreferences.length>0 || rental.rules !== null  || rental.rules !== ''">
+        <div class="amenities" *ngIf="rental.amenities.length>0">
+            <p class="attribute">Amenities</p>
+            <ul>
+                <li *ngFor="let amenity of rental.amenities">{{amenity}}</li>
+            </ul>
+        </div>
+        <div class="tenant-preferences" *ngIf="rental.tenantPreferences.length>0">
+            <p class="attribute">tenantPreferences</p>
+            <ul>
+                <li *ngFor="let preference of rental.tenantPreferences">{{preference}}</li>
+            </ul>
+        </div>
+        <div class="rules" *ngIf="rental.rules !== null  || rental.rules !== ''">
+            <p class="attribute">Rules</p>
+            <p>{{rental.rules}}</p>
+        </div>
+    </div>
+    <div class="contact-information">
+        <p><span class="attribute">Phone number: </span>{{rental.propertyOwner.phoneNumber}}</p>
+        <p><span class="attribute">Email Address: </span>{{rental.propertyOwner.emailAddress}}</p>
+    </div>
+</div>

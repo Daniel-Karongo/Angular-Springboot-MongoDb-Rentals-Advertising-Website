@@ -38,7 +38,7 @@ public class SearchRepositoryImplementation implements SearchRepository {
 
         orConditions.add(new Document("type", new Document("$regex", regexPattern).append("$options", "i")));
         orConditions.add(new Document("location", new Document("$regex", regexPattern).append("$options", "i")));
-        orConditions.add(new Document("ammenities", new Document("$regex", regexPattern).append("$options", "i")));
+        orConditions.add(new Document("amenities", new Document("$regex", regexPattern).append("$options", "i")));
 
         // Check if the text can be parsed into an integer to search in the 'amount' field
         try {

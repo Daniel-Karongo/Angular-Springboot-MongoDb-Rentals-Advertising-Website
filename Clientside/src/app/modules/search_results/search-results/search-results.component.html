@@ -1,1 +1,26 @@
-<p>search-results works!</p>
+<div class="rentals" [ngClass]="rentals.length==0 ? 'yet-to-upload' : ''">
+  <div *ngIf="rentals?.length==0" class="no-rentals">
+    <p> There are no rentals uploaded from there</p>
+  </div>
+  <div *ngIf="rentals.length>0" class="rental-list">
+    <a 
+      (click)="showRentalInDetail(rental)" 
+      *ngFor="let rental of rentals; let i = index" 
+      class="rental-item"
+    >
+      <div class="image-container">
+        <img 
+          [src]="rental?.photographs?.[0] ? 'http://localhost:8080/' + rental.photographs[0].split('\\').pop() : 'https://i.roamcdn.net/prop/brk/listing-thumb-400w/8d4c32836a1867d06c017d610439623c/-/prod-property-core-backend-media-brk/7237636/02f1752a-35ea-4eab-8e79-bc8c0b4a2d85.jpg'" 
+          alt="Rental Image" 
+        />
+
+      </div>
+      <div class="rental-details">
+        <p class="plotSummaryDescription">{{rental.plotSummaryDescription}}</p>
+        <p class="plotDetailedDescription">{{rental.plotDetailedDescription}}</p>
+        <p class="location"><span class="location-label">Location:</span> {{ rental.location }}</p>
+        <p class="amount"><span class="currency-label">Ksh</span> {{ rental.amount}} / {{ rental.term }}</p>
+      </div>
+    </a>  
+  </div>
+</div>

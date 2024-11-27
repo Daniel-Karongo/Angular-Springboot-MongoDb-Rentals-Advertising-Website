@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-information',
@@ -20,7 +21,8 @@ export class UserInformationComponent {
   user!: PropertyOwner; // Accept user data as an input
   userInformationForm!: FormGroup;
   hidePassword: boolean = true;
-  
+  private userSubscription!: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private apiGatewayService: ApiGatewayServiceService,
@@ -40,12 +42,10 @@ export class UserInformationComponent {
   }
 
   getUserInformation() {
-    this.apiGatewayService.getUser().subscribe(
-      (data) => {
-        // Ensure data is not undefined before assigning it to this.user
-        if (data) {
-          this.user = data;
-  
+    this.userSubscription = this.apiGatewayService.user$.subscribe(
+      (user) => {
+        if (user) {
+          this.user = user;
           // Patch form values only after user data is available
           this.userInformationForm.patchValue({
             id: this.user.id,
@@ -109,5 +109,11 @@ export class UserInformationComponent {
   
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 }

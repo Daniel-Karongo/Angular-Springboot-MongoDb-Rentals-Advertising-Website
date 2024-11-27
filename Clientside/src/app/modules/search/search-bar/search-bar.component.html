@@ -1,17 +1,3 @@
-<!-- <form #searchCriteriaForm="ngForm" (ngSubmit)="searchRentals(criteria)">
-  <mat-form-field appearance="outline" class="example-full-width">
-    <mat-label>Specify the Location of the rentals you want to search</mat-label>
-    <input matInput placeholder="Ex. Nairobi" type="text" name="criteria" id="criteria" [(ngModel)]="criteria" required>
-  </mat-form-field>
-  <button
-    class="mdc-fab mdc-fab--extended"
-  >
-    <div class="mdc-fab__ripple"></div>
-    <span class="material-icons">search</span>
-    <span class="mdc-fab__label">Search</span>
-  </button>
-</form> -->
-
 <form [formGroup]="searchForm" (ngSubmit)="searchRentals()">
   <mat-form-field appearance="outline" class="example-full-width">
     <mat-label>Specify the Location of the rentals you want to search</mat-label>

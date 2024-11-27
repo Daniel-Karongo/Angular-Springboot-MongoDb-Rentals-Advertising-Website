@@ -48,14 +48,14 @@ public class PropertiesRentalsService {
             propertyDTO.setPropertyOwner(owner);
             propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
             propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
-            propertyDTO.setPhotographs(getFilesFromPaths(property.getPhotographs()));
+            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
             propertyDTO.setLocation(property.getLocation());
-            propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setAmenities(property.getAmenities());
             propertyDTO.setRating(property.getRating());
             propertyDTO.setRules(property.getRules());
 
@@ -80,14 +80,14 @@ public class PropertiesRentalsService {
             propertyDTO.setPropertyOwner(owner);
             propertyDTO.setPlotSummaryDescription(prop.get().getPlotSummaryDescription());
             propertyDTO.setPlotDetailedDescription(prop.get().getPlotDetailedDescription());
-            propertyDTO.setPhotographs(getFilesFromPaths(prop.get().getPhotographs()));
+            propertyDTO.setPhotographs(prop.get().getPhotographs());
             propertyDTO.setTerm(prop.get().getTerm());
             propertyDTO.setAmount(prop.get().getAmount());
             propertyDTO.setTenantPreferences(prop.get().getTenantPreferences());
             propertyDTO.setNumberOfOccupants(prop.get().getNumberOfOccupants());
             propertyDTO.setType(prop.get().getType());
             propertyDTO.setLocation(prop.get().getLocation());
-            propertyDTO.setAmmenities(prop.get().getAmmenities());
+            propertyDTO.setAmenities(prop.get().getAmenities());
             propertyDTO.setRating(prop.get().getRating());
             propertyDTO.setRules(prop.get().getRules());
 
@@ -111,9 +111,15 @@ public class PropertiesRentalsService {
         if((Integer)property.getNumberOfOccupants() != null)
             propertyEntity.setNumberOfOccupants(property.getNumberOfOccupants());
         propertyEntity.setType(property.getType());
-        propertyEntity.setPhotographs(uploadPhotographs(property, request));
+        if(property.getPhotographs() != null) {
+            propertyEntity.setPhotographs(uploadPhotographs(property, request));
+        } else {
+            Optional<PropertyEntity> prop = Optional.of(new PropertyEntity());
+            prop = propertiesRepository.findById(property.getRentalId());
+            propertyEntity.setPhotographs(prop.get().getPhotographs());
+        }
         propertyEntity.setLocation(property.getLocation());
-        propertyEntity.setAmmenities(property.getAmmenities());
+        propertyEntity.setAmenities(property.getAmenities());
         if((Integer)property.getNumberOfOccupants() != null)
             propertyEntity.setRating(property.getRating());
         propertyEntity.setRules(property.getRules());
@@ -139,7 +145,7 @@ public class PropertiesRentalsService {
             propertyEntity.setType(property.getType());
             propertyEntity.setPhotographs(uploadPhotographs(property, request));
             propertyEntity.setLocation(property.getLocation());
-            propertyEntity.setAmmenities(property.getAmmenities());
+            propertyEntity.setAmenities(property.getAmenities());
             if((Integer)property.getNumberOfOccupants() != null)
                 propertyEntity.setRating(property.getRating());
             propertyEntity.setRules(property.getRules());
@@ -165,25 +171,25 @@ public class PropertiesRentalsService {
             propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
             propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
 
-            List<File> files = getFilesFromPaths(property.getPhotographs());
-            if (files != null && files.size() > 0) {
-                // Get the first file
-                File firstFile = files.get(0);
-                List<File> filestoReturn = new ArrayList<>();
-                filestoReturn.add(firstFile);
-                propertyDTO.setPhotographs(filestoReturn); // Assuming propertyDTO expects an array
-            } else {
-                // Handle the case where there are no files
-                System.out.println("No files available.");
-            }
-
+//            List<File> files = getFilesFromPaths(property.getPhotographs());
+//            if (files != null && files.size() > 0) {
+//                // Get the first file
+//                File firstFile = files.get(0);
+//                List<File> filestoReturn = new ArrayList<>();
+//                filestoReturn.add(firstFile);
+//                propertyDTO.setPhotographs(filestoReturn); // Assuming propertyDTO expects an array
+//            } else {
+//                // Handle the case where there are no files
+//                System.out.println("No files available.");
+//            }
+            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
             propertyDTO.setLocation(property.getLocation());
-            propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setAmenities(property.getAmenities());
             propertyDTO.setRating(property.getRating());
             propertyDTO.setRules(property.getRules());
 
@@ -221,25 +227,25 @@ public class PropertiesRentalsService {
             propertyDTO.setPlotSummaryDescription(property.getPlotSummaryDescription());
             propertyDTO.setPlotDetailedDescription(property.getPlotDetailedDescription());
 
-            List<File> files = getFilesFromPaths(property.getPhotographs());
-            if (files != null && files.size() > 0) {
-                // Get the first file
-                File firstFile = files.get(0);
-                List<File> filestoReturn = new ArrayList<>();
-                filestoReturn.add(firstFile);
-                propertyDTO.setPhotographs(filestoReturn); // Assuming propertyDTO expects an array
-            } else {
-                // Handle the case where there are no files
-                System.out.println("No files available.");
-            }
-
+//            List<File> files = getFilesFromPaths(property.getPhotographs());
+//            if (files != null && files.size() > 0) {
+//                // Get the first file
+//                File firstFile = files.get(0);
+//                List<File> filestoReturn = new ArrayList<>();
+//                filestoReturn.add(firstFile);
+//                propertyDTO.setPhotographs(filestoReturn); // Assuming propertyDTO expects an array
+//            } else {
+//                // Handle the case where there are no files
+//                System.out.println("No files available.");
+//            }
+            propertyDTO.setPhotographs(property.getPhotographs());
             propertyDTO.setTerm(property.getTerm());
             propertyDTO.setAmount(property.getAmount());
             propertyDTO.setTenantPreferences(property.getTenantPreferences());
             propertyDTO.setNumberOfOccupants(property.getNumberOfOccupants());
             propertyDTO.setType(property.getType());
             propertyDTO.setLocation(property.getLocation());
-            propertyDTO.setAmmenities(property.getAmmenities());
+            propertyDTO.setAmenities(property.getAmenities());
             propertyDTO.setRating(property.getRating());
             propertyDTO.setRules(property.getRules());
 
@@ -258,7 +264,7 @@ public class PropertiesRentalsService {
         }
     }
 
-    public String[] uploadPhotographs(Property property, HttpServletRequest request) {
+    public List<String> uploadPhotographs(Property property, HttpServletRequest request) {
         List<File> photos = property.getPhotographs(); // Assuming this gets the files from the property
         List<String> savedFilePaths = new ArrayList<>();
 
@@ -302,10 +308,7 @@ public class PropertiesRentalsService {
             e.printStackTrace();
         }
 
-        // Convert the list to an array and return it
-        System.out.println("Hello");
-        System.out.println(savedFilePaths);
-        return savedFilePaths.toArray(new String[0]);
+        return savedFilePaths;
     }
 
     public List<File> getFilesFromPaths(String[] savedFilePaths) {
@@ -331,18 +334,22 @@ public class PropertiesRentalsService {
         return files;
     }
 
-    public Property prepareRentalForUpload(String rentalId, String plotSummaryDescription, String plotDetailedDescription, String propertyOwnerId, String term, Integer amount, String tenantPreferencesJson, Integer numberOfOccupants, String type, String location, String ammenitiesJson, Integer rating, MultipartFile[] photographs, String rules) {
-        // Deserialize tenantPreferences and ammenities from JSON
+    public Property prepareRentalForUpload(String rentalId, String plotSummaryDescription, String plotDetailedDescription, String propertyOwnerId, String term, String amountStr, String tenantPreferencesJson, String numberOfOccupantsStr, String type, String location, String amenitiesJson, String ratingStr, MultipartFile[] photographs, String rules) {
+        // Deserialize tenantPreferences and amenities from JSON
         ObjectMapper objectMapper = new ObjectMapper();
         String[] tenantPreferences = null;
-        String[] ammenities = null;
+        String[] amenities = null;
+
+        Integer amount = parseInteger(amountStr);
+        Integer numberOfOccupants = parseInteger(numberOfOccupantsStr);
+        Integer rating = parseInteger(ratingStr);
 
         try {
             if (tenantPreferencesJson != null) {
                 tenantPreferences = objectMapper.readValue(tenantPreferencesJson, String[].class);
             }
-            if (ammenitiesJson != null) {
-                ammenities = objectMapper.readValue(ammenitiesJson, String[].class);
+            if (amenitiesJson != null) {
+                amenities = objectMapper.readValue(amenitiesJson, String[].class);
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -360,7 +367,7 @@ public class PropertiesRentalsService {
         property.setNumberOfOccupants(numberOfOccupants != null ? numberOfOccupants : 0);  // Default to 0 if not provided
         property.setType(type);
         property.setLocation(location);
-        property.setAmmenities(ammenities != null ? ammenities : new String[0]);  // Default to empty array if not provided
+        property.setAmenities(amenities != null ? amenities : new String[0]);  // Default to empty array if not provided
         property.setRating(rating != null ? rating : 0);  // Default to 0 if rating is not provided
         property.setRules(rules);
 
@@ -388,10 +395,19 @@ public class PropertiesRentalsService {
                 }
             }
             property.setPhotographs(photographFiles);
-        } else {
-            property.setPhotographs(new ArrayList<>());
         }
 
         return property;
+    }
+
+    private Integer parseInteger(String value) {
+        if ("undefined".equals(value) || value == null || value.isBlank()) {
+            return null; // or provide a default value, e.g., return 0;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return null; // or log the issue
+        }
     }
 }

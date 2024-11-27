@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.File;
+import java.util.List;
 
 @Document(collection = "properties")
 @Data
@@ -16,7 +17,7 @@ public class PropertyEntity {
     private String propertyOwnerId;
     private String plotSummaryDescription;
     private String plotDetailedDescription;
-    private String[] photographs;
+    private List<String> photographs;
     private String term;
     private int amount;
     private String[] tenantPreferences;
@@ -24,7 +25,7 @@ public class PropertyEntity {
     private int numberOfOccupants;
     private String type;
     private String location;
-    private String[] ammenities;
+    private String[] amenities;
     private double rating;
     private String rules;
 }

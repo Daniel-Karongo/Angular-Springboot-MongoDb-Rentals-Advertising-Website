@@ -7,6 +7,7 @@ import { PropertiesServiceService } from '../../../services/properties-service/p
 import { Observable } from 'rxjs';
 import { PropertiesDTO } from '../../../models/PropertiesDTO';
 import { Router } from '@angular/router';
+import { RentalServiceService } from '../../../services/rental-service/rental-service.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,15 +15,14 @@ import { Router } from '@angular/router';
   imports: [ FormsModule, CommonModule, MatFormField, MatInputModule, ReactiveFormsModule ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
-  // providers: [ PropertiesServiceService ]
 })
 export class SearchBarComponent {
   searchForm!: FormGroup;
-  rentals: PropertiesDTO[] = [];
 
   constructor(
     private fb: FormBuilder,
     private propertiesService: PropertiesServiceService,
+    private rentalsService: RentalServiceService,
     private route: Router
   ) {}
 
@@ -43,10 +43,8 @@ export class SearchBarComponent {
 
     this.propertiesService.searchRentals(criteria).subscribe(
       (data: PropertiesDTO[]) => {
-        this.rentals = data;
-        console.log(this.rentals);
+        this.rentalsService.setRentals(data);
         this.route.navigateByUrl('/results/' + criteria);
-
       },
       (error) => {
         console.error('Error fetching rentals', error);

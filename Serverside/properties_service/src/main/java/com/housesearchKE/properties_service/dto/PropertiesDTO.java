@@ -18,14 +18,14 @@ public class PropertiesDTO {
     private PropertyOwner propertyOwner;
     private String plotSummaryDescription;
     private String plotDetailedDescription;
-    private List<File> photographs;
+    private List<String> photographs;
     private String term;
     private Integer amount;
     private String[] tenantPreferences;
     private Integer numberOfOccupants;
     private String type;
     private String location;
-    private String[] ammenities;
+    private String[] amenities;
     private double rating;
     private String rules;
 }

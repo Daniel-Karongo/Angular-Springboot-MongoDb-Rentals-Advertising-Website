@@ -67,7 +67,7 @@ export class UploadRentalComponent implements OnInit {
   // Create the form group for basic information
   createBasicInformation(): FormGroup {
     return this.fb.group({
-      propertyOwnerId: [this.apiGatewayService._user.id, Validators.required],
+      propertyOwnerId: [this.apiGatewayService._user?.id, Validators.required],
       plotSummaryDescription: ['', Validators.required],
       plotDetailedDescription: ['', Validators.required],
       location: ['', Validators.required],
@@ -81,7 +81,7 @@ export class UploadRentalComponent implements OnInit {
   // Create the form group for optional information
   createOptionalInformation(): FormGroup {
     return this.fb.group({
-      ammenities: this.fb.array([this.createAmenity()]),
+      amenities: this.fb.array([this.createAmenity()]),
       tenantPreferences: this.fb.array([this.createPreference()]),
       rules: [''],
     });
@@ -138,7 +138,7 @@ export class UploadRentalComponent implements OnInit {
 
   // Getter for amenities in a specific optional information group
   getAmenities(i: number): FormArray {
-    return this.optionalInformation.at(i).get('ammenities') as FormArray;
+    return this.optionalInformation.at(i).get('amenities') as FormArray;
   }
 
   // Getter for preferences in a specific optional information group
@@ -202,9 +202,9 @@ export class UploadRentalComponent implements OnInit {
 
     // Add amenities and tenant preferences
     const optionalInformation = this.uploadRentalForm.getRawValue().optionalInformation[0];
-    const amenities = optionalInformation.ammenities[0];
+    const amenities = optionalInformation.amenities[0];
     const selectedAmenities = this.getSelectedAmenities(amenities);
-    this.formData.append('ammenities', JSON.stringify(selectedAmenities));  // Send as JSON string
+    this.formData.append('amenities', JSON.stringify(selectedAmenities));  // Send as JSON string
 
     // Handle tenant preferences
     const tenantPreferences = optionalInformation.tenantPreferences[0];
@@ -255,19 +255,19 @@ export class UploadRentalComponent implements OnInit {
 
   
   // Helper function to get selected amenities
-  getSelectedAmenities(ammenities: any): string[] {
+  getSelectedAmenities(amenities: any): string[] {
     const selectedAmenities: string[] = [];
   
     // Iterate over the form controls and select those that are true
-    for (let amenity in ammenities) {
-      if (ammenities[amenity] && amenity !== 'others') {
+    for (let amenity in amenities) {
+      if (amenities[amenity] && amenity !== 'others') {
         selectedAmenities.push(amenity);
       }
     }
   
     // Add 'others' if the input is not empty
-    if (ammenities.others && ammenities.others.trim() !== '') {
-      selectedAmenities.push(ammenities.others.trim());
+    if (amenities.others && amenities.others.trim() !== '') {
+      selectedAmenities.push(amenities.others.trim());
     }
   
     return selectedAmenities;

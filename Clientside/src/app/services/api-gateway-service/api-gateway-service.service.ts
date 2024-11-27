@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environments } from '../../../environment/environment';
 import { HttpClient, HttpEventType, HttpRequest } from '@angular/common/http';
-import { filter, map, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { PropertyOwner } from '../../models/PropertyOwner';
 import { User } from '../../models/User';
 import { v4 as uuidv4 } from 'uuid'; // Import the UUID function
@@ -12,7 +12,10 @@ import { v4 as uuidv4 } from 'uuid'; // Import the UUID function
 export class ApiGatewayServiceService {
   private emailAddress!: string;
   private password!: string;
-  private user!: PropertyOwner;
+  private user!: PropertyOwner | null;
+  
+  private userSubject = new BehaviorSubject<PropertyOwner | null>(null);
+  user$ = this.userSubject.asObservable();
 
   get _emailAddress(): string {
     return this.emailAddress;
@@ -22,7 +25,7 @@ export class ApiGatewayServiceService {
     return this.password;
   }
 
-  get _user(): PropertyOwner {
+  get _user(): PropertyOwner | null {
     return this.user;
   }
 
@@ -32,10 +35,10 @@ export class ApiGatewayServiceService {
   set _password(password: any) {
       this.password = password;
   }
-  set _user(user: PropertyOwner) {
+  set _user(user: PropertyOwner | null) {
     this.user = user;
-}
-
+    this.userSubject.next(user); // Emit the new user value
+  }
 
   private baseUrl = environments.apiGatewayBaseUrl;
   private endpoints = environments.apiGatewayResourcesEndpoints;
@@ -47,10 +50,10 @@ export class ApiGatewayServiceService {
     console.log(`API GATEWAY instance ID: ${this.instanceId}`);
   }
 
-  // registerUser: '/user/register',
-  // login: '/login',
-  // loginViaPostman: '/api/login',
-  // getUser: '/user'
+  ngOnDestroy(): void {
+    console.log(`API GATEWAY instance ID: ${this.instanceId} is being destroyed.`);
+    // Perform any necessary cleanup or logging here
+  }
 
   registerUser(user: PropertyOwner): Observable<PropertyOwner> {
     const url = `${this.baseUrl}${this.endpoints.registerUser}`;
@@ -63,6 +66,7 @@ export class ApiGatewayServiceService {
       map((event: any) => {
         this.password = user.password;
         this.emailAddress = user.emailAddress;
+        this._user = user;
         return event.body as PropertyOwner
       })                          // Extract the response body
     );

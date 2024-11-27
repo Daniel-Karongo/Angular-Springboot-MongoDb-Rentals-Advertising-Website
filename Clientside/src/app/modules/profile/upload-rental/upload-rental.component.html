@@ -79,7 +79,7 @@
                     <div [formGroupName]="i">
                         <!-- Amenities Section -->
                         <h3>Amenities</h3>
-                        <div formArrayName="ammenities" *ngFor="let amenityGroup of getAmenities(i).controls; let j = index">
+                        <div formArrayName="amenities" *ngFor="let amenityGroup of getAmenities(i).controls; let j = index">
                             <div [formGroupName]="j">
                                 <div class="electricity">
                                     <p>electricity</p>

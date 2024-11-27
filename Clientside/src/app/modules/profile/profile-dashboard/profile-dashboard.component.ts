@@ -6,6 +6,7 @@ import { ApiGatewayServiceService } from '../../../services/api-gateway-service/
 import { PropertyOwner } from '../../../models/PropertyOwner';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-dashboard',
@@ -18,6 +19,7 @@ export class ProfileDashboardComponent {
   username!: string; // Example username, can be dynamically set.
   user!: PropertyOwner;
   isUserInfoActive: boolean = false;
+  userSubsription!: Subscription;
 
   constructor(
     private router: Router, 
@@ -31,7 +33,7 @@ export class ProfileDashboardComponent {
       this.isUserInfoActive = this.router.url.includes('user-information');
     });
 
-    this.apiGatewayService.getUser().subscribe(
+    this.userSubsription = this.apiGatewayService.getUser().subscribe(
       (data) => {
         this.user = data;
         this.username = this.user.firstName;
@@ -55,11 +57,19 @@ export class ProfileDashboardComponent {
     localStorage.removeItem('authToken');
     this.apiGatewayService._emailAddress=null;
     this.apiGatewayService._password=null;
+    this.apiGatewayService._user=null;
+
     this.snackBar.open('Logout successful!', 'X', {
       duration: 6000, // Snackbar will auto-close after 3 seconds
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
     this.router.navigateByUrl('');
+  }
+
+  ngOnDestroy() {
+    if(this.userSubsription) {
+      this.userSubsription.unsubscribe();
+    }
   }
 }

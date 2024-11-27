@@ -11,18 +11,19 @@
   "numberOfOccupants": 0,
   "type": "Hostel",
   "photographs": [
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-9142057678387787831New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-17821119462662678312SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-12016076677320365750SPP_0398.JPG"
   ],
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Security",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -42,17 +43,19 @@
   "numberOfOccupants": 2,
   "type": "Bedsitter",
   "photographs": [
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-9142057678387787831New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-17821119462662678312SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-12016076677320365750SPP_0398.JPG"
   ],
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 3.5,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -72,17 +75,19 @@
   "numberOfOccupants": 2,
   "type": "House",
   "photographs": [
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-9142057678387787831New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-17821119462662678312SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-12016076677320365750SPP_0398.JPG"
   ],
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4.5,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -100,18 +105,19 @@
   "numberOfOccupants": 0,
   "type": "Business Premise",
   "photographs": [
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160815_1910_OlympicGames2016_Yves5355.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20160816_2053_OlympicGames2016_Yves5856.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1836_DenmarkOpen2016_BPYN8398.jpg",
-    "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-9142057678387787831New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-17821119462662678312SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-12016076677320365750SPP_0398.JPG"
   ],
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Security",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -135,12 +141,14 @@
     "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
   ],
   "location": "South C",
-  "ammenities": [
-    "Wi-fi",
-    "Security",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4.7,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -164,12 +172,14 @@
     "D:/Pictures/Badminton Photos/Akane Yamaguchi/20161023_1843_DenmarkOpen2016_BPYN8464.jpg"
   ],
   "location": "Nairobi",
-  "ammenities": [
-    "Wi-fi",
-    "Security",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4.6,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -189,12 +199,14 @@
   "numberOfOccupants": 0,
   "type": "Hostel",
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Security",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -216,11 +228,14 @@
   "numberOfOccupants": 2,
   "type": "Bedsitter",
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 3.5,
   "_class": "com.housesearchKE.properties_service.model.Property"
@@ -242,12 +257,123 @@
   "numberOfOccupants": 2,
   "type": "House",
   "location": "Thika",
-  "ammenities": [
-    "Wi-fi",
-    "Water",
-    "Ceiling",
-    "Cctv"
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
   ],
   "rating": 4.5,
   "_class": "com.housesearchKE.properties_service.model.Property"
+},
+{
+  "_id": {
+    "$oid": "674075428e6ada0d62cd093f"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "plotSummaryDescription": "The standard Lorem Ipsum passage, used since the 1500s",
+  "plotDetailedDescription": "The standard Lorem Ipsum passage, used since the 1500s",
+  "photographs": [
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-10578387800480850834New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-9864823346042026288SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-18105977633750500631SPP_0398.JPG"
+  ],
+  "term": "Monthly",
+  "amount": 57657,
+  "tenantPreferences": [
+    "Any Gender",
+    "No students allowed",
+    "No small children allowed",
+    "No vehicles allowed",
+    "Any Religion"
+  ],
+  "numberOfOccupants": 0,
+  "type": "",
+  "location": "Nairobi",
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
+  ],
+  "rating": 0,
+  "rules": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",
+  "_class": "com.housesearchKE.properties_service.model.PropertyEntity"
+},
+{
+  "_id": {
+    "$oid": "674077318e6ada0d62cd0941"
+  },
+  "propertyOwnerId": "6711189b84da374d8b132412",
+  "plotSummaryDescription": "kjlkj",
+  "plotDetailedDescription": "kjlkj",
+  "photographs": [
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-1914772697249306223New Passport.jpg",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-719907609164443378SPP_0399.JPG",
+    "D:\\Projects\\Web Development\\Projects\\HousesearchKE\\Userdata\\upload-4748355451949451627SPP_0398.JPG"
+  ],
+  "term": "kjkljkljkl",
+  "amount": 789789,
+  "tenantPreferences": [
+    "Any Gender",
+    "No students allowed",
+    "No small children allowed",
+    "No vehicles allowed",
+    "Any Religion"
+  ],
+  "numberOfOccupants": 0,
+  "type": "jkljkljjklj",
+  "location": "kljjkljkl",
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
+  ],
+  "rating": 0,
+  "rules": "",
+  "_class": "com.housesearchKE.properties_service.model.PropertyEntity"
+},
+{
+  "_id": {
+    "$oid": "674441f9d3e14a1f288cbd4d"
+  },
+  "propertyOwnerId": "6711176984da374d8b132411",
+  "plotSummaryDescription": "null",
+  "plotDetailedDescription": "null",
+  "photographs": [],
+  "term": "Year",
+  "amount": 50000,
+  "tenantPreferences": [
+    "No students allowed",
+    "No small children allowed",
+    "No vehicles allowed",
+    "Christianity",
+    "Hinduism",
+    "Judaism"
+  ],
+  "numberOfOccupants": 0,
+  "type": "Hostel",
+  "location": "Thika",
+  "amenities": [
+    "cleanWater",
+    "securityGuard",
+    "communalPitLatrine",
+    "garbageCollection",
+    "handicapAccess",
+    "tiles",
+    "wifi"
+  ],
+  "rating": 0,
+  "rules": "",
+  "_class": "com.housesearchKE.properties_service.model.PropertyEntity"
 }]

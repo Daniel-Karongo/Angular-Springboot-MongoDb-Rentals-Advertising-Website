@@ -17,7 +17,7 @@
       Rentals: {{ rentals.length }}
     </div>
     <a 
-      (click)="showRentalInDetail(rental.rentalId)" 
+      (click)="showRentalInDetail(rental)" 
       *ngFor="let rental of rentals; let i = index" 
       class="rental-item"
     >
@@ -35,7 +35,7 @@
         <p class="amount"><span class="currency-label">Ksh</span> {{ rental.amount}} / {{ rental.term }}</p>
         <button
           class="mdc-fab mdc-fab--extended"
-          (click)="viewDetails(rental.rentalId); $event.stopPropagation()"
+          (click)="viewDetails(rental); $event.stopPropagation()"
         >
           <div class="mdc-fab__ripple"></div>
           <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>

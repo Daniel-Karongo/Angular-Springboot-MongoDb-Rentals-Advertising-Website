@@ -43,18 +43,18 @@ public class PropertiesController {
             @RequestParam(value = "plotSummaryDescription", required = false) String plotSummaryDescription,
             @RequestParam(value = "plotSummaryDescription", required = false) String plotDetailedDescription,
             @RequestParam(value = "term", required = false) String term,
-            @RequestParam(value = "amount", required = false) Integer amount,
+            @RequestParam(value = "amount", required = false) String amountStr,
             @RequestParam(value = "tenantPreferences", required = false) String tenantPreferencesJson,
-            @RequestParam(value = "numberOfOccupants", required = false) Integer numberOfOccupants,
+            @RequestParam(value = "numberOfOccupants", required = false) String numberOfOccupantsStr,
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "location", required = false) String location,
-            @RequestParam(value = "ammenities", required = false) String ammenitiesJson,
-            @RequestParam(value = "rating", required = false) Integer rating,
+            @RequestParam(value = "amenities", required = false) String amenitiesJson,
+            @RequestParam(value = "rating", required = false) String ratingStr,
             @RequestParam(value = "photographs", required = false) MultipartFile[] photographs, // Accept file array
             @RequestParam(value = "rules", required = false) String rules,
             HttpServletRequest request) {
 
-        Property property = propertiesRentalsService.prepareRentalForUpload(rentalId, plotSummaryDescription, plotDetailedDescription, propertyOwnerId, term, amount, tenantPreferencesJson, numberOfOccupants, type, location, ammenitiesJson, rating, photographs, rules);
+        Property property = propertiesRentalsService.prepareRentalForUpload(rentalId, plotSummaryDescription, plotDetailedDescription, propertyOwnerId, term, amountStr, tenantPreferencesJson, numberOfOccupantsStr, type, location, amenitiesJson, ratingStr, photographs, rules);
         System.out.println(property);
         return propertiesRentalsService.saveRental(property, request);
     }

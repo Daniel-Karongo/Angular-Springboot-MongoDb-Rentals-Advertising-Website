@@ -8,7 +8,7 @@ import { NavigationServiceService } from './services/navigation-service/navigati
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavigationBarComponent, SearchBarComponent, CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -28,20 +28,6 @@ export class AppComponent implements OnInit {
     this.isLoginPage = false;
 
     this.route.navigateByUrl('/');
-  //   // Subscribe to home page requests
-  //   this.navigationService.homePageRequest$.subscribe(() => {
-  //     this.isHomePage = true;
-  //     this.isLoginPage = false;
-
-  //     this.cdr.detectChanges();  // Trigger change detection after changing state
-  //   });
-
-  //   // Subscribe to "no such page" requests
-  //   this.navigationService.clearAppComponent$.subscribe(() => {
-  //     this.isHomePage = false;
-  //     this.isLoginPage = false;
-  //     this.cdr.detectChanges();  // Trigger change detection
-  // });
   }
 
   loginPageInitialiser() {

@@ -9,6 +9,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { PropertiesServiceService } from '../../../services/properties-service/properties-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { RentalServiceService } from '../../../services/rental-service/rental-service.service';
 
 @Component({
   selector: 'app-my-rentals',
@@ -21,6 +23,7 @@ export class MyRentalsComponent {
 
   rentals: PropertiesDTO[] = [];
   user!: PropertyOwner; // Accept user data as an input
+  private userSubscription!: Subscription;
 
   constructor(
     private propertyOwnersService: PropertyOwnersServiceService,
@@ -28,7 +31,8 @@ export class MyRentalsComponent {
     private apiGatewayService: ApiGatewayServiceService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private rentalService: RentalServiceService
   ) {
 
   }
@@ -38,37 +42,37 @@ export class MyRentalsComponent {
   }
 
   getUserInformation() {
-    this.apiGatewayService.getUser().subscribe(
-      (data) => {
-        // Ensure data is not undefined before assigning it to this.user
-        if (data) {
-          this.user = data;
-
+    this.userSubscription = this.apiGatewayService.user$.subscribe(
+      (user) => {
+        if (user) {
+          this.user = user;
           this.propertyOwnersService.getAllOwnersProperties(this.user.id).subscribe(
             (data) => {
               this.rentals = data || []; // Assign an empty array if data is null/undefined
             },
             (error) => {
-              console.error('Error fetching user data:', error);
               this.rentals = []; // Assign an empty array in case of error
             }
           );
         }
-      },
-      (error) => {
-        console.error('Error fetching user data in', error);
       }
     );
   }
 
-  showRentalInDetail(rentalId: string) {
-    console.log(rentalId);
-    this.route.navigate(['rental/' + rentalId], {relativeTo: this.activatedRoute.parent});
+  showRentalInDetail(rental: PropertiesDTO) {
+    this.rentalService.setRental(rental);
+    this.route.navigate(['rental/' + rental.rentalId], {
+      relativeTo: this.activatedRoute.parent,
+    });
   }
-
-  viewDetails(rentalId: string) {
-    console.log(rentalId);
+  
+  viewDetails(rental: PropertiesDTO) {
+    this.rentalService.setRental(rental);
+    this.route.navigate(['rental/' + rental.rentalId], {
+      relativeTo: this.activatedRoute.parent,
+    });
   }
+  
 
   deleteRental(rentalId: string) {
     console.log(rentalId);
@@ -96,5 +100,11 @@ export class MyRentalsComponent {
 
   uploadRental() {
     this.route.navigate(['rental/upload'], {relativeTo: this.activatedRoute.parent});
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 }
