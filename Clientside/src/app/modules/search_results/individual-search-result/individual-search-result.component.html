@@ -1,10 +1,41 @@
+<div class="nav-bar">
+    <form [formGroup]="searchForm" (ngSubmit)="searchRentals()">
+        <mat-form-field appearance="outline" class="example-full-width">
+            <input matInput placeholder="Ex. Nairobi" type="text" formControlName="criteria" required>
+
+            <!-- Search Button inside the mat-form-field -->
+            <button
+                mat-icon-button
+                class="search-button"
+                [disabled]="searchForm.invalid"
+                matSuffix
+            >
+                <span class="material-icons">search</span>
+            </button>
+        </mat-form-field>
+    </form>
+
+    <!-- Advertise Button -->
+    <button
+        (click)="loginPageInitialiser()"
+        class="mdc-fab mdc-fab--extended advertise-button"
+    >
+        <div class="mdc-fab__ripple"></div>
+        <span class="mdc-fab__label">Advertise</span>
+    </button>
+</div>
+
 <div class="individual-rental-container">
     <div class="rental-images">
-        <ng-image-slider *ngIf="rental.photographs && rental.photographs.length>0" [images]="imageObject" #nav></ng-image-slider>
+        <ng-image-slider 
+            *ngIf="rental.photographs && rental.photographs.length>0" 
+            [images]="imageObject" 
+            #nav
+        ></ng-image-slider>
     </div>
     <div class="basic-rental-details">
         <h1>{{rental.plotSummaryDescription}}</h1>
-        <p><span class="attribute">Description </span>{{rental.plotDetailedDescription}}</p>
+        <p><span class="attribute">Description</span><br>{{rental.plotDetailedDescription}}</p>
         <p><span class="attribute">Location </span>{{rental.location}}</p>
         <p><span class="attribute">Amount </span>{{rental.amount}}</p>
         <p><span class="attribute">Term </span>{{rental.term}}</p>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { PropertiesDTO } from '../../../models/PropertiesDTO';
 import { RentalServiceService } from '../../../services/rental-service/rental-service.service';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { PropertiesServiceService } from '../../../services/properties-service/properties-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-individual-search-result',
@@ -39,13 +41,19 @@ export class IndividualSearchResultComponent {
   allReligionsCheck: boolean = true;
   replacePhotos: boolean = false
   imageObject!: Array<object>;
+  searchForm!: FormGroup;
+  
+  @Output() loginPageRequest = new EventEmitter<void>();
 
   constructor(
-    private rentalService: RentalServiceService
+    private rentalsService: RentalServiceService,
+    private propertiesService: PropertiesServiceService,
+    private router: Router,
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit() {
-    this.rental = this.rentalService.getRental();
+    this.rental = this.rentalsService.getRental();
 
     // Dynamically populate the imageObject array with photographs from rental.photographs
     if (this.rental.photographs && this.rental.photographs.length > 0) {
@@ -59,5 +67,32 @@ export class IndividualSearchResultComponent {
         slideImage: 1,
       }));
     }
+
+    this.searchForm = this.fb.group({
+      criteria: ['', Validators.required]
+    });
+  }
+
+  searchRentals(): void {
+    if (this.searchForm.invalid) {
+      return;
+    }
+
+    const criteria = this.searchForm.value.criteria;
+
+    this.propertiesService.searchRentals(criteria).subscribe(
+      (data: PropertiesDTO[]) => {
+        this.rentalsService.setRentals(data);
+        this.router.navigateByUrl('/results/' + criteria);
+      },
+      (error) => {
+        console.error('Error fetching rentals', error);
+      }
+    );
+  }
+
+  loginPageInitialiser() {
+    this.loginPageRequest.emit();
+    this.router.navigate(['/login']); // Navigate to the login route
   }
 }

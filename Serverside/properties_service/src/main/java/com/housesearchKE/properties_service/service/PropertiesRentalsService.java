@@ -98,34 +98,43 @@ public class PropertiesRentalsService {
     }
 
     public ResponseEntity<PropertyEntity> saveRental(Property property, HttpServletRequest request) {
-        PropertyEntity propertyEntity = new PropertyEntity();
+        PropertyEntity propertyEntity;
 
-        if(property.getRentalId()!= null)
-            propertyEntity.setRentalId(property.getRentalId());
+        if (property.getRentalId() != null) {
+            propertyEntity = propertiesRepository.findById(property.getRentalId()).orElse(new PropertyEntity());
+        } else {
+            propertyEntity = new PropertyEntity();
+        }
+
+        // Update or set properties
         propertyEntity.setPropertyOwnerId(property.getPropertyOwnerId());
         propertyEntity.setPlotDetailedDescription(property.getPlotDetailedDescription());
         propertyEntity.setPlotSummaryDescription(property.getPlotSummaryDescription());
         propertyEntity.setTerm(property.getTerm());
         propertyEntity.setAmount(property.getAmount());
         propertyEntity.setTenantPreferences(property.getTenantPreferences());
-        if((Integer)property.getNumberOfOccupants() != null)
+        if ((Integer)property.getNumberOfOccupants() != null)
             propertyEntity.setNumberOfOccupants(property.getNumberOfOccupants());
         propertyEntity.setType(property.getType());
-        if(property.getPhotographs() != null) {
+
+        // Handle photographs - replace instead of append
+        if (property.getPhotographs() != null) {
             propertyEntity.setPhotographs(uploadPhotographs(property, request));
         } else {
-            Optional<PropertyEntity> prop = Optional.of(new PropertyEntity());
-            prop = propertiesRepository.findById(property.getRentalId());
-            propertyEntity.setPhotographs(prop.get().getPhotographs());
+            Optional<PropertyEntity> prop = propertiesRepository.findById(property.getRentalId());
+            propertyEntity.setPhotographs(prop.get().getPhotographs()); // Keep the previous value if no new photos are provided
         }
+
         propertyEntity.setLocation(property.getLocation());
         propertyEntity.setAmenities(property.getAmenities());
-        if((Integer)property.getNumberOfOccupants() != null)
+        if ((Double)property.getRating() != null)
             propertyEntity.setRating(property.getRating());
         propertyEntity.setRules(property.getRules());
 
+        // Save or update the entity
         return new ResponseEntity<>(propertiesRepository.save(propertyEntity), HttpStatus.CREATED);
     }
+
 
     public ResponseEntity<List<PropertyEntity>> saveRentals(List<Property> properties, HttpServletRequest request) {
         List<PropertyEntity> propertyEntities = new ArrayList<>();

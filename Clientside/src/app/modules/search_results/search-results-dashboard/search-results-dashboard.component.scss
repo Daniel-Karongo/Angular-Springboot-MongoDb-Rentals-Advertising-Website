@@ -29,9 +29,12 @@ form {
 }
 
 mat-form-field {
+    justify-self: center;
+    align-self: center;
     display: inline-flex; /* Align the input and button inline */
-    flex-grow: 1; /* Allow input to take up the available space */
-    margin-right: 8px; /* Space between the input and the button */
+    flex-grow: 0.5; /* Allow input to take up the available space */
+    margin-left: 10px; /* Space between the input and the button */
+    // max-width: 50%;
 }
 
 button.search-button {

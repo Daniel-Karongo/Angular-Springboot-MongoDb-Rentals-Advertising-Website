@@ -35,7 +35,6 @@ export class SearchResultsDashboardComponent {
   }
 
   ngOnInit(): void {
-    console.log("initialising component")
     this.searchForm = this.fb.group({
       criteria: ['', Validators.required]
     });
@@ -43,7 +42,6 @@ export class SearchResultsDashboardComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         // You can handle cleanup here if necessary
-        console.log('Navigating away, cleanup can be triggered');
         this.ngOnDestroy(); // Manually call cleanup logic if needed
       }
     });
@@ -66,7 +64,7 @@ export class SearchResultsDashboardComponent {
       }
     );
   }
+
   ngOnDestroy() {
-    console.log("Destroying component")
   }
 }
